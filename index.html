@@ -1,1318 +1,375 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="theme-color" content="#f6f3ee"/>
-<title>Block — your training</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joel Walters · Portfolio</title>
+<meta name="description" content="Joel Walters · London-based creator. Real, life-led content for brands.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f6f3ee;--surface:#fff;--surface2:#fbf9f5;--ink:#2b2823;--muted:#8c8478;--faint:#b3ab9d;--line:#ece5da;
-    --pine:#2f5d4e;--pine-soft:#e4efe9;--pine-ink:#214339;--clay:#bf6f3a;--clay-soft:#f7e9da;--gold:#b89234;--brick:#b1524a;
-    --shadow:0 1px 2px rgba(58,48,34,.04),0 6px 18px rgba(58,48,34,.06);--shadow-lg:0 2px 6px rgba(58,48,34,.06),0 14px 34px rgba(58,48,34,.10);--r:18px;}
-  *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
-  body{padding-bottom:94px}
-  .serif{font-family:"Fraunces",Georgia,serif}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  input,textarea,select{font-family:inherit;color:var(--ink);font-size:16px}
-  ::placeholder{color:var(--faint)}
-  .wrap{max-width:560px;margin:0 auto;padding:0 18px}
-  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 80%,rgba(246,243,238,0));padding:22px 0 8px}
-  .hello{font-family:"Fraunces";font-weight:500;font-size:26px;letter-spacing:-.01em;line-height:1.1}
-  .sub{color:var(--muted);font-size:13px;margin-top:4px;font-weight:500}.sub b{color:var(--pine)}
-  .banner{display:flex;align-items:center;gap:12px;background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:var(--r);padding:13px 15px;margin:13px 0 4px}
-  .banner .txt{flex:1;font-size:13.5px;color:var(--pine-ink);font-weight:500;line-height:1.35}
-  .banner button{background:var(--pine);color:#fff;font-weight:600;font-size:13px;padding:9px 14px;border-radius:10px;white-space:nowrap}
+  :root{
+    --cream:#F5F0E8;
+    --white:#FFFFFF;
+    --ink:#211E1B;
+    --red:#C32C1B;
+    --grey:#8A827A;
+    --line:rgba(33,30,27,.12);
+    --maxw:1100px;
+    --font:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--cream);color:var(--ink);font-family:var(--font);
+    font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--red);color:var(--cream)}
+  img,video{display:block;max-width:100%}
+  h1,h2,h3{letter-spacing:-.02em;line-height:1.06;color:var(--ink)}
 
-  .weeknav{display:flex;align-items:center;justify-content:space-between;margin:10px 0 8px}
-  .weeknav .wt{font-family:"Fraunces";font-weight:500;font-size:18px}
-  .weeknav button{width:34px;height:34px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:17px;box-shadow:var(--shadow)}
-  .weekstrip{display:flex;gap:5px;margin-bottom:16px}
-  .daycell{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:8px 1px;text-align:center;box-shadow:var(--shadow)}
-  .daycell.sel{background:var(--pine);border-color:var(--pine)}
-  .daycell .dw{font-size:10px;font-weight:700;color:var(--faint)}
-  .daycell.sel .dw{color:#a9cdc0}
-  .daycell .dn{font-family:"Fraunces";font-weight:600;font-size:16px;margin:2px 0}
-  .daycell.sel .dn{color:#fff}
-  .daycell.today .dn{color:var(--clay)}
-  .daycell.sel.today .dn{color:#fff;text-decoration:underline}
-  .daycell .dc{font-size:9px;font-weight:700;color:var(--muted);min-height:11px}
-  .daycell.sel .dc{color:#cfe4dc}
+  nav{position:sticky;top:0;z-index:50;background:rgba(245,240,232,.85);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:600;letter-spacing:-.01em}
+  .nav-links{display:flex;gap:28px;font-size:.9rem;color:var(--grey)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--ink)}
+  .nav-links a:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:2px}
+  @media(max-width:640px){.nav-links{display:none}}
 
-  .sesshead{display:flex;align-items:flex-end;justify-content:space-between;margin:2px 0 10px;gap:10px}
-  .sesshead .st{font-family:"Fraunces";font-weight:500;font-size:21px;line-height:1.1}
-  .sesshead .sx{font-size:12px;color:var(--muted);font-weight:600;margin-top:3px}
-  .swapbtn{background:var(--pine-soft);color:var(--pine);font-weight:700;border-radius:10px;padding:9px 13px;font-size:13px;white-space:nowrap}
-  .swaprow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}
-  .swapopt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted);box-shadow:var(--shadow)}
-  .swapopt.on{background:var(--pine);color:#fff;border-color:var(--pine)}
+  section{max-width:var(--maxw);margin:0 auto;padding:84px 24px}
+  .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--grey);font-weight:600;margin-bottom:16px}
+  .btn{font-weight:500;font-size:.9rem;padding:12px 22px;border-radius:8px;
+    transition:.2s;border:1px solid transparent;display:inline-block}
+  .btn-primary{background:var(--red);color:var(--cream)}
+  .btn-primary:hover,.btn-primary:focus-visible{filter:brightness(1.08)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--ink)}
+  .btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
-  .ex-head{display:flex;align-items:center;gap:14px;padding:17px 18px}
-  .ex-head .meta{flex:1;min-width:0}
-  .ex-name{font-family:"Fraunces";font-weight:500;font-size:19px;line-height:1.12}
-  .ex-sub{font-size:12px;color:var(--muted);margin-top:5px;font-weight:500}
-  .target{text-align:right;line-height:1}
-  .target .kg{font-family:"Fraunces";font-weight:600;font-size:30px}
-  .target .unit{font-size:11px;color:var(--muted);font-weight:600}
-  .target .reps{font-size:11.5px;color:var(--muted);margin-top:5px;font-weight:500}
-  .target .last{font-size:10.5px;color:var(--faint);margin-top:4px;font-weight:600}
-  .tag{display:inline-block;margin-top:7px;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:8px}
-  .tag.up{color:var(--clay);background:var(--clay-soft)}.tag.hold{color:var(--gold);background:#f6efd9}
-  .tag.rep{color:var(--muted);background:var(--surface2)}.tag.coach{color:var(--pine);background:var(--pine-soft)}
-  .ex-open{border-top:1px solid var(--line);padding:16px 18px;background:var(--surface2)}
-  .lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}
-  .setrow{display:grid;grid-template-columns:30px 1fr 1fr;gap:9px;align-items:center;margin-bottom:9px}
-  .setrow .n{font-size:12px;font-weight:700;color:var(--faint)}
-  .setrow input{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;width:100%}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px var(--pine-soft)}
-  .rpe-note{display:grid;grid-template-columns:88px 1fr;gap:9px;margin-top:3px}
-  .rpe-note input{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px}
-  .save-row{display:flex;gap:9px;margin-top:13px}
-  .btn{background:var(--pine);color:#fff;font-weight:700;border-radius:13px;padding:14px;font-size:15px;width:100%;box-shadow:var(--shadow)}
-  .btn:active{transform:translateY(1px)}.btn:disabled{opacity:.55}
-  .btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);font-weight:600;box-shadow:none}
-  .btn.sm{padding:10px 15px;width:auto;font-size:13.5px;border-radius:11px}
-  .btn.link{background:none;box-shadow:none;color:var(--muted);font-weight:600;width:auto;padding:8px;text-decoration:underline}
-  .hist{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-  .hist .h{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--faint);margin-bottom:8px}
-  .hist .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);padding:3px 0;font-weight:500}
-  .hist .row b{color:var(--ink);font-weight:600}
-  .finisher{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px 18px;margin:6px 0 12px;box-shadow:var(--shadow)}
-  .finisher .t{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--clay);text-transform:uppercase}
-  .finisher .b{font-size:14px;color:var(--muted);margin-top:7px;line-height:1.5;font-weight:500}
-  .finisher.warmup .t{color:var(--pine)}
-  .food-note{font-size:13px;color:var(--muted);margin:16px 4px 6px;line-height:1.55;font-weight:500}
-  h2.sec{font-family:"Fraunces";font-weight:500;font-size:20px;margin:24px 2px 13px;letter-spacing:-.01em}
+  /* ---- phone mockup (shared) ---- */
+  .device{position:relative;background:var(--ink);border-radius:30px;
+    padding:8px 7px 7px;box-shadow:0 18px 50px rgba(33,30,27,.18);transition:transform .25s}
+  .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:3;
+    width:40px;height:5px;background:rgba(245,240,232,.35);border-radius:99px}
+  .screen{aspect-ratio:9/16;border-radius:24px;overflow:hidden;position:relative;
+    background:linear-gradient(160deg,#cfc7ba,#ded6c9);
+    display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:.78rem}
+  .screen video,.screen img{width:100%;height:100%;object-fit:cover}
+  .scrubber{position:absolute;left:12px;right:12px;bottom:12px;height:3px;
+    background:rgba(245,240,232,.4);border-radius:99px;z-index:2}
+  .scrubber::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:9px;height:9px;border-radius:50%;background:var(--cream)}
+  .play{position:absolute;inset:0;margin:auto;width:44px;height:44px;border-radius:50%;
+    background:rgba(33,30,27,.35);display:flex;align-items:center;justify-content:center;z-index:2}
+  .play::after{content:"";border-left:12px solid var(--cream);border-top:8px solid transparent;
+    border-bottom:8px solid transparent;margin-left:3px}
 
-  .moverow{display:flex;align-items:center;gap:13px;padding:14px 18px;border-bottom:1px solid var(--line)}
-  .moverow:last-child{border-bottom:none}
-  .moverow .mk{width:24px;height:24px;border-radius:7px;border:2px solid var(--line);flex:0 0 auto}
-  .moverow.done .mk{background:var(--pine);border-color:var(--pine)}
-  .moverow .mn{flex:1;font-weight:600;font-size:14.5px}
-  .moverow .md{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
-  .moverow .demo{display:inline-block;margin-left:10px;font-size:10.5px;font-weight:700;color:var(--pine);background:var(--pine-soft);border-radius:7px;padding:3px 8px;white-space:nowrap}
-  .simple{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow);text-align:center;margin-bottom:12px}
-  .simple .si{font-family:"Fraunces";font-size:19px;font-weight:500;margin-bottom:8px}
-  .simple .sb{font-size:14px;color:var(--muted);font-weight:500;line-height:1.5}
-  .donepill{display:inline-flex;align-items:center;gap:7px;background:var(--pine-soft);color:var(--pine-ink);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:700;margin-top:14px}
+  /* view-count overlay (shows on hover) */
+  .views{position:absolute;left:12px;bottom:12px;z-index:4;display:flex;align-items:center;
+    gap:6px;color:var(--cream);font-weight:600;font-size:.82rem;
+    text-shadow:0 1px 4px rgba(0,0,0,.6);opacity:0;transition:opacity .2s;pointer-events:none}
+  .views svg{width:15px;height:15px;flex:none}
+  .tile:hover .views,.phone:hover .views{opacity:1}
 
-  .goalcard{background:var(--pine);color:#fff;border-radius:var(--r);padding:18px 19px;box-shadow:var(--shadow-lg);margin-bottom:18px}
-  .goalcard .k{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#a9cdc0;text-transform:uppercase}
-  .goalcard .v{font-family:"Fraunces";font-weight:500;font-size:18px;line-height:1.35;margin-top:9px}
-  .goalcard .wk{margin-top:13px;font-size:12px;color:#bcd9cf;font-weight:500}
-  .coach-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
-  .coach-box textarea{width:100%;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:96px;resize:vertical;line-height:1.5}
-  .coach-msg{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pine);border-radius:12px;padding:16px;font-size:14.5px;line-height:1.6;white-space:pre-wrap;box-shadow:var(--shadow);margin-top:16px}
-  .coach-msg .who{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--pine);text-transform:uppercase;margin-bottom:8px}
-  .think{color:var(--muted);font-size:14px;padding:16px;text-align:center}
-  .prop{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-top:11px;box-shadow:var(--shadow)}
-  .prop .change{font-family:"Fraunces";font-weight:500;font-size:16px;line-height:1.3}
-  .prop .why{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45;font-weight:500}
-  .prop .acts{display:flex;gap:9px;margin-top:13px}
-  .prop .kindtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--clay);background:var(--clay-soft);padding:3px 8px;border-radius:7px;margin-bottom:9px}
-  .prop.goal .kindtag,.prop.food .kindtag{color:var(--pine);background:var(--pine-soft)}
-  .applied-note{background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:13px;padding:13px 15px;margin-top:14px;font-size:13px;color:var(--pine-ink);font-weight:600}
-  .applied-list{background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:13px;padding:13px 15px;margin-top:14px}
-  .applied-list .al-h{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--pine);text-transform:uppercase;margin-bottom:9px}
-  .applied-list .al-row{font-size:13.5px;color:var(--pine-ink);font-weight:600;line-height:1.45;padding:5px 0;border-top:1px solid #d4e6dd}
-  .applied-list .al-row:first-of-type{border-top:none}
+  /* sound toggle button */
+  .sound{position:absolute;right:12px;bottom:12px;z-index:5;width:30px;height:30px;
+    border:none;border-radius:50%;background:rgba(10,10,10,.55);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    padding:0;transition:background .2s}
+  .sound:hover{background:rgba(10,10,10,.8)}
+  .sound:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+  .sound svg{width:16px;height:16px;pointer-events:none}
+  .sound .on{display:none}
+  .sound.is-on .off{display:none}
+  .sound.is-on .on{display:block}
 
-  .howto{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:14px}
-  .exfig{width:96px;height:96px;flex:0 0 auto}
-  .exfig line{stroke:var(--pine);stroke-width:5;stroke-linecap:round}
-  .exfig .hd{fill:var(--pine)}
-  .exfig .bar{stroke:var(--clay);stroke-width:5;stroke-linecap:round}
-  .exfig .floor{stroke:#e4ddcf;stroke-width:2.5;stroke-linecap:round}
-  .howto-side{flex:1;min-width:0}
-  .howto-cue{font-size:13px;color:var(--muted);line-height:1.45;font-weight:500}
-  .whyline{font-size:12.5px;color:var(--pine-ink);background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:11px;padding:9px 12px;margin:0 0 13px;line-height:1.4;font-weight:500}
-  .rungbar{display:flex;align-items:center;gap:9px;background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:12px;padding:8px 9px;margin:0 0 12px}
-  .rungbtn{flex:0 0 auto;font-size:12px;font-weight:700;padding:8px 11px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-  .rungbtn:disabled{opacity:.35;cursor:default}
-  .rungbtn.hi{background:var(--pine-ink);color:#fff;border-color:var(--pine-ink)}
-  .rungmid{flex:1;text-align:center;min-width:0}
-  .rungnow{font-size:12px;font-weight:800;color:var(--ink);line-height:1.3}
-  .rungready{font-size:11px;font-weight:700;color:var(--pine-ink)}
-  .runghold{font-size:11px;font-weight:700;color:#b0653a}
-  .timerbar{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:0 0 12px}
-  .timerdisp{flex:1;font-size:22px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
-  .alsodid{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
-  .alsolbl{font-size:12px;color:var(--muted);font-weight:600}
-  .alsobtn{font-size:12px;font-weight:700;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-  .alsobtn:disabled{opacity:.55;cursor:default;color:var(--pine-ink)}
-  .fedbtn{font-size:12px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;margin-right:6px}
-  .ftag{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--pine-ink);background:var(--pine-soft);border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:middle}
-  .frow.fedit{flex-direction:column;align-items:stretch;gap:0}
-  .demo-link{display:inline-block;margin-top:9px;font-size:12px;font-weight:700;color:var(--pine);background:var(--pine-soft);border-radius:9px;padding:7px 12px;text-decoration:none}
-  .swaprow2{margin-top:12px}
-  .swapbtn2{font-size:12px;font-weight:700;color:var(--clay);background:var(--clay-soft);border-radius:9px;padding:8px 12px}
-  .swapform{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .swaphint{flex:1 1 100%;font-size:11.5px;color:var(--clay);font-weight:600;line-height:1.4}
-  .swapform .swapname{flex:1 1 100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px}
-  .swapform .swapnum{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
-  .totals{display:flex;gap:12px;margin-bottom:16px}
-  .tcard{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;box-shadow:var(--shadow)}
-  .tcard .tl{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase}
-  .tcard .tv{font-family:"Fraunces";font-weight:600;font-size:26px;margin-top:6px;line-height:1}
-  .tcard .tv small{font-family:"Hanken Grotesk";font-size:13px;color:var(--muted);font-weight:600}
-  .bar{height:7px;border-radius:6px;background:var(--surface2);margin-top:11px;overflow:hidden;border:1px solid var(--line)}
-  .bar .fill{height:100%;border-radius:6px;background:var(--pine)}.bar .fill.over{background:var(--clay)}.bar .fill.prot{background:var(--gold)}
-  .sugg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-  .schip{display:inline-flex;align-items:center;gap:8px;background:var(--pine-soft);border:1px solid #d4e6dd;border-radius:999px;padding:8px 8px 8px 13px;font-size:13px;font-weight:600;color:var(--pine-ink)}
-  .schip button{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:50%;font-weight:700;line-height:1}
-  .foodlist{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-  .frow{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line)}
-  .frow:last-child{border-bottom:none}.frow .fn{flex:1}.frow .fn .nm{font-weight:600;font-size:14.5px}
-  .frow .fn .mi{font-size:11.5px;color:var(--muted);margin-top:2px;font-weight:500}
-  .frow .add{background:var(--pine-soft);color:var(--pine);font-weight:700;border-radius:9px;padding:8px 13px;font-size:13px}
-  .qbox{display:flex;align-items:center;gap:8px}
-  .qbox button{width:30px;height:30px;border-radius:8px;background:var(--surface2);border:1px solid var(--line);font-weight:700;font-size:16px;line-height:1}
-  .qbox input{width:54px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px}
-  .logitem{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
-  .logitem:last-child{border-bottom:none}.logitem .li-n{flex:1;font-weight:600}
-  .logitem .li-m{color:var(--muted);font-size:12.5px;font-weight:600}.logitem .rm{color:var(--brick);font-size:18px;padding:0 4px}
-  .searchbar{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:11px;box-shadow:var(--shadow)}
+  /* ---- ABOUT (top) ---- */
+  .about{padding-top:64px}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:36px}}
+  .about h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:700;margin-bottom:24px}
+  .about .lead{font-size:clamp(1.05rem,2.2vw,1.25rem);margin-bottom:20px;max-width:44ch}
+  .about p{color:var(--grey);margin-bottom:15px;max-width:46ch;font-size:.98rem}
+  .about .u{color:var(--ink);border-bottom:1px solid var(--grey)}
+  .niche{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 28px}
+  .niche span{font-size:.76rem;color:var(--grey);border:1px solid var(--line);
+    padding:6px 13px;border-radius:999px}
+  .about-cta{display:flex;flex-wrap:wrap;gap:12px}
+  .about-phone{max-width:360px;justify-self:center;width:100%}
 
-  .weekhdr{font-family:"Fraunces";font-weight:500;font-size:16px;margin:20px 2px 11px;display:flex;justify-content:space-between;align-items:baseline}
-  .weekhdr small{font-family:"Hanken Grotesk";font-size:12px;color:var(--muted);font-weight:600}
-  .session{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;margin-bottom:11px;box-shadow:var(--shadow)}
-  .session .sd{font-size:12px;font-weight:700;color:var(--pine);margin-bottom:10px}
-  .session .sl{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:4px 0;color:var(--muted);font-weight:500}
-  .session .sl .nm2{flex:1}.session .sl b{color:var(--ink);font-weight:600}
-  .session .sl .del{color:var(--brick);font-size:15px;padding:0 4px;margin-left:8px}
-  .empty{color:var(--muted);font-size:14px;text-align:center;padding:40px 20px;line-height:1.6;font-weight:500}
+  /* ---- logos ---- */
+  .logos{padding-top:0;padding-bottom:0;max-width:none;overflow:hidden;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
+  .logos-label{text-align:center;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--grey);padding:22px 0 6px}
+  .marquee{display:flex;gap:64px;padding:20px 0 32px;width:max-content;
+    align-items:center;animation:scroll 26s linear infinite}
+  @media (prefers-reduced-motion:reduce){.marquee{animation:none;flex-wrap:wrap;
+    justify-content:center;width:auto;padding:20px 24px 32px}}
+  .logos:hover .marquee{animation-play-state:paused}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .logo-chip{height:38px;min-width:120px;display:flex;align-items:center;
+    justify-content:center;color:var(--grey);font-weight:600;font-size:.95rem;
+    white-space:nowrap;opacity:.75}
+  .logo-img{height:34px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.65;transition:.2s}
+  .logo-img:hover{filter:grayscale(0);opacity:1}
 
-  .edit-ex{display:grid;grid-template-columns:1fr 46px 64px 40px;gap:7px;margin-bottom:9px;align-items:center}
-  .edit-ex input,.edit-ex select{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13.5px;box-shadow:var(--shadow)}
-  .edit-ex .x{color:var(--brick);text-align:center;font-size:18px;box-shadow:none}
-  .blockcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
-  .blockcard h3{font-family:"Fraunces";font-weight:500;font-size:17px;margin:0 0 13px}
-  .prof{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-  .prof label{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase;display:block;margin-bottom:6px}
-  .prof input{width:100%;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px}
-  .snap-h{font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--clay);text-transform:uppercase;margin:0 0 8px}
-  .snap-row{display:grid;grid-template-columns:1fr auto 16px auto;gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
-  .snap-row:last-child{border-bottom:none}
-  .sl-lbl{font-size:13.5px;font-weight:600;color:var(--ink)}
-  .sl-then{font-size:13px;color:var(--faint);font-weight:600}
-  .sl-arrow{font-size:12px;color:var(--faint);text-align:center}
-  .sl-now{font-size:15px;color:var(--pine);font-weight:600}
-  .snap-foot{font-size:12px;color:var(--muted);font-weight:500;margin-top:6px}
-  .goalbox textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;min-height:80px;resize:vertical;line-height:1.5;box-shadow:var(--shadow)}
+  /* ---- recent brand work (2) ---- */
+  .work h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:8px}
+  .work .sub{color:var(--grey);margin-bottom:38px}
+  .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,320px));gap:24px;justify-content:start}
+  @media(max-width:560px){.work-grid{grid-template-columns:1fr;max-width:320px}}
+  .tile{aspect-ratio:9/16;background:var(--white);border-radius:14px;position:relative;
+    overflow:hidden;border:1px solid var(--line);transition:transform .25s;
+    box-shadow:0 12px 40px rgba(33,30,27,.08)}
+  .tile:hover{transform:translateY(-4px)}
+  .tile .ph{position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;color:var(--grey);font-size:.8rem}
+  .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:14px;
+    font-weight:600;font-size:.95rem;color:var(--cream);
+    background:linear-gradient(transparent,rgba(33,30,27,.85))}
 
-  .lock{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;gap:16px;max-width:330px;margin:0 auto;padding:24px}
-  .lock .mark{font-family:"Fraunces";font-weight:600;font-size:40px;letter-spacing:-.02em;color:var(--pine)}
-  .lock p{color:var(--muted);margin:2px 0 6px;font-size:14px;font-weight:500}
-  .lock input{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:15px;box-shadow:var(--shadow)}
-  .err{color:var(--brick);font-size:13px;font-weight:600;min-height:18px}
+  /* ---- video examples ---- */
+  .examples h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:8px}
+  .examples .sub{color:var(--grey);margin-bottom:40px}
+  .phone-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  @media(max-width:900px){.phone-grid{grid-template-columns:repeat(2,1fr);gap:32px}}
+  @media(max-width:460px){.phone-grid{grid-template-columns:1fr;max-width:230px;margin:0 auto}}
+  .phone{margin:0;text-align:center}
+  .phone:hover .device{transform:translateY(-5px)}
+  .phone figcaption{margin-top:16px;font-weight:600;font-size:.9rem;color:var(--ink)}
+  .phone .cap-sub{display:block;font-weight:400;font-size:.78rem;color:var(--grey);margin-top:3px}
 
-  nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px 0 calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-around}
-  nav button{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);font-size:10px;font-weight:700;padding:3px 10px;position:relative}
-  nav button.on{color:var(--pine)} nav svg{width:21px;height:21px}
-  .dot{position:absolute;top:0;right:6px;width:8px;height:8px;border-radius:50%;background:var(--clay)}
-  .toast{position:fixed;bottom:102px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;padding:12px 20px;border-radius:999px;z-index:50;opacity:0;transition:.2s;box-shadow:var(--shadow-lg)}
-  .savefail{background:#fbe9e6;border:1px solid #f0c9c2;color:var(--brick);border-radius:12px;padding:10px 13px;margin:10px 0 2px;font-size:13px;font-weight:700;cursor:pointer}
-  .savedot{font-size:12px;font-weight:600}.savedot.saved{color:var(--pine)}.savedot.saving{color:var(--muted)}.savedot.failed{color:var(--brick)}
-  .toast.show{opacity:1}
+  /* ---- reviews ---- */
+  .reviews h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:38px}
+  .review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px;align-items:start}
+  .review{background:var(--white);border-radius:14px;padding:26px;border:1px solid var(--line)}
+  .stars{color:var(--red);letter-spacing:2px;margin-bottom:14px;font-size:.9rem}
+  .review p{font-size:.98rem;color:var(--ink)}
+
+  /* ---- contact ---- */
+  .contact{text-align:center;padding-bottom:80px}
+  .contact h2{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;margin-bottom:8px}
+  .contact-rows{display:flex;flex-direction:column;gap:16px;align-items:center;margin-top:36px}
+  .contact-row{display:flex;align-items:center;gap:14px}
+  .contact-row .ico{width:26px;height:26px;color:var(--ink);flex:none}
+  .contact-row .ico svg{width:100%;height:100%;display:block}
+  .pill{display:inline-block;background:var(--white);border:1px solid var(--line);
+    border-radius:12px;padding:12px 24px;font-weight:500;font-size:.95rem;color:var(--ink);
+    transition:.2s;min-width:170px;text-align:center}
+  .pill:hover,.pill:focus-visible{border-color:var(--ink);transform:translateY(-1px)}
+  .pill:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+  footer{border-top:1px solid var(--line);text-align:center;padding:30px 24px}
+  .footer-nav{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;
+    margin-bottom:16px;font-size:.9rem;font-weight:500}
+  .footer-nav a{color:var(--grey);transition:color .2s}
+  .footer-nav a:hover,.footer-nav a:focus-visible{color:var(--ink)}
+  .footer-nav a:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+  .copyright{color:var(--grey);font-size:.82rem}
 </style>
 </head>
-<body>
-<div id="root"></div>
-<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-<script type="text/babel">
-const {useState,useEffect,useRef}=React;
-const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const DOWFULL={Mon:"Monday",Tue:"Tuesday",Wed:"Wednesday",Thu:"Thursday",Fri:"Friday",Sat:"Saturday",Sun:"Sunday"};
-const DAYWK=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const deep=(x)=>JSON.parse(JSON.stringify(x));
-const uid=()=>"i"+Date.now()+Math.floor(Math.random()*999);
-const todayISO=()=>new Date().toISOString();
-const daysBetween=(iso)=>iso?Math.floor((Date.now()-new Date(iso))/86400000):999;
-const pad=(n)=>String(n).padStart(2,"0");
-const localKey=(d=new Date())=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x;};
-const parseKey=(k)=>new Date(k+"T00:00:00");
-const fmtDay=(key)=>{const d=parseKey(key);return `${DAYWK[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;};
-const round=(n)=>Math.round(n);
-function weekStartKey(key){const d=parseKey(key);const dow=(d.getDay()+6)%7;d.setDate(d.getDate()-dow);return localKey(d);}
+<body id="top">
 
-const numOrNull=(v)=>{const n=parseFloat(v);return isNaN(n)?null:n;};
-const firstNum=(v)=>{if(v==null||v==="")return null;const m=String(v).match(/-?\d+(?:\.\d+)?/g);return m?Number(m[m.length-1]):null;};
-const clamp=(n,a,b)=>{const lo=Math.min(a,b),hi=Math.max(a,b);return Math.max(lo,Math.min(hi,n));};
-function copyText(t){try{if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(t).then(()=>true).catch(()=>false);}catch(e){}return Promise.resolve(false);}
+<nav>
+  <div class="nav-inner">
+    <div class="brand">Joel Walters</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#examples">Examples</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Work with me</a>
+    </div>
+  </div>
+</nav>
 
-const STAPLES=[
-  {id:"f_chicken",name:"Chicken breast",unit:"breast",kcal:250,protein:46,dq:1,step:0.5},
-  {id:"f_beef",name:"Beef (cooked)",unit:"100g",kcal:250,protein:26,dq:1.5,step:0.5},
-  {id:"f_rice",name:"White rice (cooked)",unit:"100g",kcal:130,protein:2.7,dq:1.5,step:0.5},
-  {id:"f_egg",name:"Eggs",unit:"egg",kcal:72,protein:6,dq:2,step:1},
-  {id:"f_toast",name:"Toast",unit:"slice",kcal:80,protein:3,dq:2,step:1},
-  {id:"f_yog",name:"Greek yogurt",unit:"100g",kcal:60,protein:10,dq:1.7,step:0.5},
-  {id:"f_gran",name:"Granola",unit:"40g serving",kcal:180,protein:4,dq:1,step:0.5},
-  {id:"f_whitefish",name:"White fish",unit:"100g",kcal:85,protein:18,dq:1.5,step:0.5},
-  {id:"f_salmon",name:"Salmon",unit:"100g",kcal:208,protein:20,dq:1.5,step:0.5},
-  {id:"f_oil",name:"Olive oil",unit:"tbsp",kcal:120,protein:0,dq:1,step:0.5},
-  {id:"f_bar",name:"Granola bar",unit:"bar",kcal:140,protein:2,dq:1,step:1},
-  {id:"f_whey",name:"Whey shake",unit:"scoop",kcal:120,protein:24,dq:1,step:1},
-  {id:"f_banana",name:"Banana",unit:"medium",kcal:105,protein:1,dq:1,step:1},
-  {id:"f_milk",name:"Semi milk",unit:"100ml",kcal:50,protein:3.5,dq:2,step:0.5},
-  {id:"f_pb",name:"Peanut butter",unit:"tbsp",kcal:95,protein:4,dq:1,step:1},
-  {id:"f_potato",name:"Potato (cooked)",unit:"100g",kcal:87,protein:2,dq:2,step:0.5},
-];
-
-const DEFAULT_STATE={
-  version:6,startDate:todayISO(),
-  profile:{weight:78,goalWeight:72,kcalTarget:2200,proteinTarget:180},
-  goals:"Stay lean (78→72kg, visible abs) and keep/build muscle, while getting extremely flexible — front + middle splits, loose pain-free movement everywhere. Backflip is the long-term stretch goal. Muscle is the floor, flexibility is the focus.",
-  workouts:[
-    {id:"S1",name:"Strength + Posterior Chain",
-      warmup:"World's greatest stretch 5/side · leg swings 10/side · bodyweight good-mornings ×10 (5 min)",
-      exercises:[
-        {id:"s1a",name:"Back Squat",type:"free",sets:4,lo:6,hi:8,inc:2,cue:"3-second pause at the bottom"},
-        {id:"s1b",name:"Romanian Deadlift",type:"free",sets:4,lo:6,hi:8,inc:2,cue:"full range, slow on the way down"},
-        {id:"s1c",name:"Nordic Curl",type:"bw",sets:3,lo:4,hi:6,inc:1,cue:"lower as slowly as you can — eccentric-only is fine to start"},
-        {id:"s1d",name:"Jefferson Curl",type:"free",sets:2,lo:5,hi:6,inc:1,cue:"light & slow, roll down one vertebra at a time — the lower-back healer"},
-        {id:"s1e",name:"Walking Lunge",type:"free",sets:3,lo:8,hi:10,inc:2,cue:"per side · sink into the hip flexor each step"}],
-      finisher:"PNF hamstring 3×30s/side, then couch stretch 2×60s/side. Keep it inside your 45."},
-    {id:"S2",name:"Upper Strength + Bridge",
-      warmup:"Band shoulder dislocates ×10 · cat-cow ×10 · open-book thoracic rotations 8/side (5 min)",
-      exercises:[
-        {id:"s2a",name:"Overhead Press",type:"free",sets:4,lo:6,hi:8,inc:2},
-        {id:"s2b",name:"Pull-Ups",type:"bw",sets:3,lo:6,hi:10,inc:2,cue:"add load once you clear 10 clean reps"},
-        {id:"s2c",name:"DB Bench Press",type:"free",sets:3,lo:8,hi:10,inc:2},
-        {id:"s2d",name:"Face Pulls",type:"machine",sets:3,lo:12,hi:15,inc:1},
-        {id:"s2e",name:"Back Bridge Hold",type:"hold",sets:3,lo:30,hi:60,inc:10,cue:"chase straight arms — push tall through the shoulders"}],
-      finisher:"Chest stretch + thoracic extension over a bench edge, 5 min. Inside your 45."},
-    {id:"S3",name:"Gymnastics + Calisthenics",
-      warmup:"Wrist prep · scapular shrugs ×10 · cat-cow ×10 · deep squat rocks ×10 (4 min)",
-      exercises:[
-        {id:"s3a",name:"Hollow Body Hold",type:"hold",sets:4,lo:20,hi:30,inc:5},
-        {id:"s3b",name:"L-Sit",type:"hold",sets:4,lo:12,hi:20,inc:5,cue:"tuck → one leg out → full"},
-        {id:"s3c",name:"Handstand Wall Hold",type:"hold",sets:4,lo:30,hi:45,inc:5,cue:"chest to wall, ribs tucked in"},
-        {id:"s3d",name:"Pistol Squat",type:"bw",sets:3,lo:4,hi:6,inc:2,cue:"per side · box → counterweight → full. Single-leg strength + deep hip mobility"},
-        {id:"s3e",name:"Pseudo Planche Push-Up",type:"bw",sets:3,lo:6,hi:10,inc:2,cue:"lean shoulders past your hands, body in a straight line",desc:"Your base-builder — do this first. Hands by your lower ribs, lean your shoulders forward past your hands and push the floor away (protract your shoulder blades). This builds the straight-arm, shoulders-forward pressing strength that makes pike push-ups actually possible. Start from your knees if a full plank version is too much."},
-        {id:"s3h",name:"Pike Push-Up",type:"bw",sets:3,lo:5,hi:8,inc:2,cue:"hands raised to start; lower the crown of your head between them",desc:"The reason it never got going is the floor version is brutally hard — so START with your hands ELEVATED on a bench or box. That cuts the load right down. Hips stacked over your shoulders (pike shape), lower the crown of your head toward the floor between your hands, then press back up. As it gets easy, lower the elevation: box → step → floor → feet-elevated → handstand push-up."},
-        {id:"s3f",name:"Dragon Flag",type:"bw",sets:3,lo:4,hi:6,inc:1,cue:"tuck → straddle → full, lower slowly"},
-        {id:"s3g",name:"Back Bridge Hold",type:"hold",sets:3,lo:40,hi:60,inc:10}],
-      finisher:"Pike compression: seated, hands pressing the floor, lift the hips — 3×20. Easy cooldown."},
-    {id:"S4",name:"Splits Progression",
-      warmup:"3-min joint warm-up — hip circles, leg swings, deep squat rocks, ankle rolls",
-      exercises:[
-        {id:"s4a",name:"Hip-Flexor Lunge Hold",type:"hold",sets:2,lo:90,hi:120,inc:15,cue:"per side · square the hips, tuck the tailbone"},
-        {id:"s4b",name:"PNF Hamstring",type:"hold",sets:3,lo:30,hi:45,inc:5,cue:"per side · stretch 30s → contract into it 10s → relax deeper"},
-        {id:"s4c",name:"Pancake Straddle Lean",type:"hold",sets:3,lo:60,hi:90,inc:15,cue:"flat back, walk the hands further each round"},
-        {id:"s4d",name:"Half Splits Hold",type:"hold",sets:2,lo:90,hi:120,inc:15,cue:"per side"},
-        {id:"s4e",name:"Front Splits (ease in)",type:"hold",sets:2,lo:60,hi:90,inc:15,cue:"per side · hands on blocks/books, never force it"},
-        {id:"s4f",name:"Middle Splits (ease in)",type:"hold",sets:2,lo:60,hi:90,inc:15}],
-      finisher:"Lie back and breathe — 60s slow diaphragmatic breathing to release."},
-    {id:"S5",name:"Flow + Active Mobility",
-      warmup:"3-min joint warm-up — cat-cow, hip circles, shoulder rolls, deep squat rocks",
-      exercises:[
-        {id:"s5a",name:"Cossack Squat Flow",type:"bw",sets:3,lo:8,hi:10,inc:0,cue:"per side · slow and controlled, sink deep"},
-        {id:"s5b",name:"90/90 Hip Switches",type:"bw",sets:3,lo:10,hi:10,inc:0,cue:"transitions · drive from the hips"},
-        {id:"s5c",name:"Deep Squat Hold",type:"hold",sets:3,lo:60,hi:90,inc:15,cue:"heels down, chest tall, pry the knees out"},
-        {id:"s5d",name:"Thoracic Rotation Flow",type:"bw",sets:3,lo:10,hi:10,inc:0,cue:"per side · reach and open through the upper back"},
-        {id:"s5e",name:"Active Leg Raises",type:"bw",sets:3,lo:10,hi:10,inc:1,cue:"per side · lying, lift as high as you can with control — builds usable flexibility"},
-        {id:"s5f",name:"Hip-Flexor Flow",type:"hold",sets:1,lo:120,hi:120,inc:0,cue:"continuous, flow side to side"}],
-      finisher:"Finish loose — 60s easy breathing."},
-  ],
-  schedule:{Mon:"S1",Tue:"football",Wed:"S2",Thu:"S4",Fri:"S3",Sat:"S5",Sun:"football"},
-  weekPlans:{}, logs:{}, overrides:{}, checkins:[], undoStack:[], pending:null, lastApplied:null, lastCheckin:null, manualSwaps:[], steps:{},
-  flexLog:[], bodyLog:[], baseline:null,
-  foods:deep(STAPLES), foodLog:{}, foodTargets:{}, foodSuggestions:{}, foodPending:null, foodUndo:[], lastFoodCheckin:null,
-};
-
-function withDefaults(s){
-  if(!s) return deep(DEFAULT_STATE);
-  const d=DEFAULT_STATE;
-  const fresh=!s.version||s.version<6;            // v6: split Pike/Pseudo + add how-to descriptions
-  const workouts=fresh?deep(d.workouts):(s.workouts??d.workouts);
-  const schedule=fresh?{...d.schedule}:(s.schedule??d.schedule);
-  const weekPlans=fresh?{}:(s.weekPlans??{});
-  const goals=fresh?d.goals:(s.goals??d.goals);
-  return {...d,...s,
-    version:6,
-    profile:{...d.profile,...(s.profile||{})},
-    goals, startDate:s.startDate??d.startDate,
-    workouts, schedule, weekPlans,
-    logs:s.logs??{}, overrides:fresh?{}:(s.overrides??{}), checkins:s.checkins??[], undoStack:s.undoStack??[], manualSwaps:s.manualSwaps??[], steps:s.steps??{},
-    pending:s.pending??null, lastApplied:s.lastApplied??null, lastCheckin:s.lastCheckin??null,
-    flexLog:s.flexLog??[], bodyLog:s.bodyLog??[], baseline:s.baseline??null,
-    foods:(s.foods&&s.foods.length)?s.foods:deep(STAPLES),
-    foodLog:s.foodLog??{}, foodTargets:s.foodTargets??{}, foodSuggestions:s.foodSuggestions??{},
-    foodPending:s.foodPending??null, foodUndo:s.foodUndo??[], lastFoodCheckin:s.lastFoodCheckin??null};
-}
-
-const FOOD_NOTE={S1:"Post-lift: beef or chicken + rice — protein and carbs within the hour.",
-  S2:"Post-lift: protein + a solid carb — chicken or beef + rice.",
-  S3:"After gymnastics work: protein-led — chicken or fish + a carb."};
-
-function nextTarget(ex,history,override){
-  const flow=(ex.type==="bw"&&(ex.inc||0)===0);
-  const rangeStr=`${ex.lo}–${ex.hi}`;
-  const last=history&&history.length?history[history.length-1]:null;
-  const ladder=LADDERS[ex.name];
-  if(ladder){
-    const rungIdx=Math.max(0,Math.min(ladder.length-1,ex.rung||0));
-    const rung=ladder[rungIdx];
-    const onLoad=!!rung.load;
-    const lastReps=((last&&last.reps)||[]).map(Number);
-    const note=((last&&last.note)||"").toLowerCase();
-    const rpe=Number(last&&last.rpe)||0;
-    const rangeFail=/short|half|partial|not full|couldn'?t reach|could ?not reach|no depth|shallow|wobbl|lost balance|off balance|unstable|shaky|tipp|toppl|\bfell\b|\bfall\b/.test(note);
-    const cleanNote=/eas|smooth|clean|control|solid|strong/.test(note);
-    const lastW=(last&&last.weights&&last.weights.length)?last.weights.map(Number):[Number(last&&last.weight)||0];
-    const base={ladder,rungIdx,rungName:rung.name,onLoadRung:onLoad,rangeFail};
-    if(onLoad){ // LOAD rung — added kg = harder (normal weighted logic)
-      if(!last) return {...base,weight:null,weights:Array.from({length:ex.sets},()=>null),repGoal:ex.hi,reps:rangeStr,kind:"new",hint:"add a little load",why:"Top rung: full pistol holding weight at the chest. Start light and build.",last:null,lastW:null,readyToAdvance:false};
-      const topW=Math.max(0,...lastW);
-      const hitAll=lastReps.length>=ex.sets&&lastReps.every(r=>r>=ex.hi);
-      const failed=rangeFail||/form|sloppy|ugly|grind|breakdown|broke down|lost.*form|bad rep|cheat|fail|couldn'?t|could ?not|too heavy|had to drop|gave up|bail/.test(note);
-      let kind="rep",hint="same weight, beat your reps",delta=0,why=`Below ${ex.hi} on a set → same weight, add reps to ${ex.hi} on all ${ex.sets} first.`;
-      if(hitAll&&rpe<9&&!failed){delta=ex.inc||2.5;kind="up";hint=`+${ex.inc||2.5}kg — you earned it`;why=`Full-depth pistol, all ${ex.hi} reps${rpe?` at RPE ${rpe}`:""} → +${ex.inc||2.5}kg at the chest.`;}
-      else if(failed){delta=-Math.max(ex.inc||2.5,Math.round(topW*0.05));kind="down";hint="ease back — keep depth";why=`${rangeFail?"Depth or balance slipped":"You flagged a form breakdown"} → drop the load to protect full depth. A hard set alone won't drop it.`;}
-      else if(hitAll){kind="hold";hint="hold — own this weight";why=`Full-depth reps but near-max${rpe?` (RPE ${rpe})`:""} → same load next time; smooth it before adding. Depth was fine, so nothing drops.`;}
-      const weights=Array.from({length:ex.sets},(_,i)=>{const w=lastW[i]!=null?lastW[i]:(lastW.length?lastW[lastW.length-1]:0);return w>0?Math.max(0,Math.round((w+delta)*2)/2):w;});
-      return {...base,weight:Math.max(0,...weights.map(w=>w==null?0:w)),weights,repGoal:ex.hi,reps:rangeStr,kind,hint,why,last,lastW,readyToAdvance:false};
-    }
-    // ASSIST rungs — progress reps + rung; NEVER add weight
-    const top=lastReps.length?Math.max(...lastReps):ex.lo;
-    let repGoal=Math.max(ex.lo,top||ex.lo),kind="rep",hint="beat your reps · full range",why=`Build to ${ex.hi} clean, full-range reps on every set — then move up a rung.`,readyToAdvance=false;
-    const hitAll=lastReps.length>=ex.sets&&top>0&&lastReps.every(r=>r>=ex.hi);
-    if(!last){repGoal=ex.lo;kind="new";hint="ease in · full range";why=`Start here: aim for ${ex.lo} controlled, full-range reps per set. When it's clean and easy, tap ▲ to move up.`;}
-    else if(rangeFail){repGoal=Math.max(ex.lo,top);kind="down";hint="full range first — hold";why="You flagged short or wobbly reps → stay on this rung and own full range before moving up. Nothing is added for a partial rep.";}
-    else if(hitAll&&((rpe>0&&rpe<=7)||cleanNote)){kind="up";hint="ready to move up ▲";repGoal=ex.hi;readyToAdvance=rungIdx<ladder.length-1;why=readyToAdvance?`Clean, full-range ${ex.hi} reps at low RPE — you've earned the next rung. Tap ▲ to advance.`:"Full-range and strong — next stop is adding load (tap ▲).";}
-    else if(hitAll){kind="rep";hint="log RPE to move up";repGoal=ex.hi;why=`You hit all ${ex.hi} reps — add your RPE and note the range, and I'll flag the next rung once it's clean and easy.`;}
-    else{const allTop=lastReps.length>=ex.sets&&top>0&&lastReps.every(r=>r>=top);repGoal=allTop?Math.min(ex.hi,top+1):Math.max(ex.lo,top);kind="rep";hint="beat your reps · full range";why=`Add a rep when every set is clean and full-range. Build to ${ex.hi}, then move up a rung.`;}
-    return {...base,weight:null,weights:Array.from({length:ex.sets},()=>null),repGoal,reps:String(repGoal),kind,hint,why,last,lastW:null,readyToAdvance};
-  }
-  const oVal=override?firstNum(override.value??override.weight):null;
-  if(override&&oVal!=null&&(!last||new Date(override.date)>new Date(last.date)))
-    return {weight:flow?null:oVal,weights:Array.from({length:ex.sets},()=>flow?null:oVal),repGoal:ex.hi,reps:flow?String(ex.hi):rangeStr,kind:"coach",hint:"coach set",why:"Your coach set this target — adjust in the coach tab if it feels off.",last,lastW:null};
-  if(!last)
-    return {weight:null,weights:Array.from({length:ex.sets},()=>null),repGoal:ex.hi,reps:flow?String(ex.hi):rangeStr,kind:"new",hint:flow?"quality reps":"set your start weight",why:flow?`First time — aim for ${ex.hi} clean, controlled reps per set.`:"Log your first working weight — the target climbs from there.",last:null,lastW:null};
-  const lastW=(last.weights&&last.weights.length)?last.weights.map(Number):[Number(last.weight)||0];
-  const lastReps=(last.reps||[]).map(Number);
-  const topW=Math.max(0,...lastW);
-  const note=(last.note||"").toLowerCase();
-  const easy=/eas|light|comfort|smooth|flew|strong/.test(note),formFail=/form|sloppy|ugly|grind|grinder|breakdown|broke down|lost.*form|bad rep|no depth|partial|half rep|cheat|fail|couldn'?t|could ?not|too heavy|had to drop|gave up|bail/.test(note);
-  const rpe=Number(last.rpe)||0;
-  // FLOW (bodyweight, no load): the target is a rising rep count derived from your best set — no cap.
-  if(flow){
-    const top=lastReps.length?Math.max(...lastReps):ex.lo;
-    const allTop=lastReps.length>=ex.sets&&top>0&&lastReps.every(r=>r>=top);
-    let repGoal=Math.max(top,ex.lo),kind="rep",hint="match your best on every set",why=`Hit ${Math.max(top,ex.lo)} on all ${ex.sets} sets and the target climbs next time.`;
-    if(allTop&&rpe<9&&!formFail){repGoal=top+1;kind="up";hint="add a rep — you earned it";why=`You matched your best (${top}) on every set${rpe?` at RPE ${rpe}`:""} → aim ${top+1} this time.`;}
-    else if(formFail&&top>ex.lo){repGoal=Math.max(ex.lo,top-1);kind="down";hint="ease back a rep";why=`You flagged a form/range breakdown → drop to ${Math.max(ex.lo,top-1)} and rebuild clean reps. A hard set alone won't drop you — only a form note.`;}
-    return {weight:null,weights:Array.from({length:ex.sets},()=>null),repGoal,reps:String(repGoal),kind,hint,why,last,lastW};
-  }
-  // WEIGHTED (free / machine / loaded bodyweight): double progression — fill the rep range, then add load.
-  const hitAll=lastReps.length>=ex.sets&&lastReps.every(r=>r>=ex.hi);
-  let kind="rep",hint="same weight, beat your reps",delta=0,why=`Below ${ex.hi} on a set → same weight, add reps until you hit ${ex.hi} on all ${ex.sets}.`;
-  if(hitAll&&rpe<9&&!formFail){delta=ex.inc||2.5;kind="up";hint=`+${ex.inc||2.5}kg — you earned it`;why=`You hit all ${ex.hi} reps${rpe?` at RPE ${rpe}`:""} → +${ex.inc||2.5}kg vs last time.`;}
-  else if(formFail){delta=-Math.max(ex.inc||2.5,Math.round(topW*0.05));kind="down";hint="ease back — rebuild form";why="You flagged a form breakdown → weight comes down to rebuild clean reps. A hard set alone won't drop it — only a form note does.";}
-  else if(hitAll){kind="hold";hint="hold — own this weight";why=`You hit all ${ex.hi} reps but near-max${rpe?` (RPE ${rpe})`:""} → same weight next time; smooth it out before adding load. Form was fine, so nothing drops.`;}
-  const weights=Array.from({length:ex.sets},(_,i)=>{const w=lastW[i]!=null?lastW[i]:(lastW.length?lastW[lastW.length-1]:0);return w>0?Math.max(0,Math.round((w+delta)*2)/2):w;});
-  const weight=Math.max(0,...weights.map(w=>w==null?0:w));
-  return {weight,weights,repGoal:ex.hi,reps:rangeStr,kind,hint,why,last,lastW};
-}
-function nextHoldTarget(ex,history,override){
-  const last=history&&history.length?history[history.length-1]:null;
-  const ladder=LADDERS[ex.name];
-  if(ladder){
-    const rungIdx=Math.max(0,Math.min(ladder.length-1,ex.rung||0));
-    const rung=ladder[rungIdx];
-    const lastSecs=((last&&last.secs)||[]).map(Number);
-    const note=((last&&last.note)||"").toLowerCase();
-    const rpe=Number(last&&last.rpe)||0;
-    const rangeFail=/round|arch|hunch|bent back|back bend|knees? bent|bent knee|too wide|lost.*flat|can'?t.*flat|couldn'?t.*flat/.test(note);
-    const cleanNote=/eas|smooth|clean|flat|control|solid|strong|comfortable/.test(note);
-    const inc=ex.inc||10;
-    const base=Math.max(ex.lo,lastSecs.length?Math.max(...lastSecs):(Number(last&&last.targetSecs)||ex.hi));
-    const hitAll=lastSecs.length>=ex.sets&&lastSecs.every(s=>s>=base);
-    const b={ladder,rungIdx,rungName:rung.name,onLoadRung:false,rangeFail};
-    if(!last) return {...b,secs:ex.hi,secsArr:Array.from({length:ex.sets},()=>ex.hi),kind:"new",hint:"ease in · flat back",why:`Start at this width: hold up to ${ex.hi}s with a flat back at your honest depth. When it's easy and clean, tap ▲ to widen.`,readyToAdvance:false};
-    let secsTop=base,kind="rep",hint="beat your time · flat back",why=`Hold ${base}s with a flat back, walking the hands a little further. Build time and depth here, then widen.`,readyToAdvance=false;
-    if(rangeFail){secsTop=Math.max(ex.lo,base);kind="down";hint="flat back first — hold";why="You flagged rounding or too-wide → stay at this width and own the flat-back hold before widening. Depth never comes from rounding.";}
-    else if(hitAll&&base>=ex.hi&&((rpe>0&&rpe<=6)||cleanNote)){kind="up";hint="ready to widen ▲";secsTop=base;readyToAdvance=rungIdx<ladder.length-1;why=readyToAdvance?`Clean, flat-back holds at ${base}s and low RPE — widen when you're ready (tap ▲). No rush: a flat-back fold matters more than width.`:`Full width, held clean — keep building depth and time.`;}
-    else if(hitAll){secsTop=base+inc;kind="up";hint=`+${inc}s`;why=`Held ${base}s on every set → +${inc}s at this width. Keep the back flat; note how it felt and I'll flag the next width once it's easy.`;}
-    return {...b,secs:secsTop,secsArr:Array.from({length:ex.sets},()=>secsTop),kind,hint,why,last,readyToAdvance};
-  }
-  const oVal=override?firstNum(override.value??override.weight):null;
-  if(override&&oVal!=null&&(!last||new Date(override.date)>new Date(last.date)))
-    return {secs:oVal,secsArr:Array.from({length:ex.sets},()=>oVal),kind:"coach",hint:"coach set",why:"Your coach set this target — adjust in the coach tab if it feels off.",last};
-  if(!last)
-    return {secs:ex.hi,secsArr:Array.from({length:ex.sets},()=>ex.hi),kind:"new",hint:`aim ${ex.hi}s`,why:`First time — work up to ${ex.hi}s per set in a good position.`,last:null};
-  const lastSecs=(last.secs||[]).map(Number);
-  // No upper cap: your best hold sets the base, even beyond the listed range.
-  const base=Math.max(ex.lo,lastSecs.length?Math.max(...lastSecs):(Number(last.targetSecs)||ex.hi));
-  const note=(last.note||"").toLowerCase();
-  const easy=/eas|light|comfort|smooth|flew|strong/.test(note),failed=/fail|couldn'?t|could ?not|had to stop|gave up|collaps|dropped/.test(note);
-  const hitAll=lastSecs.length>=ex.sets&&lastSecs.every(s=>s>=base);
-  const rpe=Number(last.rpe)||0;
-  const inc=ex.inc||0;
-  let secsTop=base,kind="hold",hint="hold — stay controlled",why=`Maintenance hold — keep ${base}s clean and controlled.`;
-  if(inc>0){
-    if(hitAll&&rpe<9&&!failed){secsTop=base+inc;kind="up";hint=`+${inc}s — you earned it`;why=`You held ${base}s on every set${rpe?` at RPE ${rpe}`:""} → +${inc}s this time.`;}
-    else if(rpe>=9||failed){secsTop=Math.max(ex.lo,base-inc);kind="down";hint="ease back this time";why=`${rpe>=9?`RPE ${rpe}`:"You flagged it hard"} last time → shorter holds to keep your position clean.`;}
-    else{secsTop=base;kind="rep";hint="beat your time";why=`Hold ${base}s on all ${ex.sets} sets and the target climbs next time.`;}
-  }
-  return {secs:secsTop,secsArr:Array.from({length:ex.sets},()=>secsTop),kind,hint,why,last};
-}
-
-const PW_KEY="blk_pw";
-const getPw=()=>{try{return localStorage.getItem(PW_KEY)||""}catch{return""}};
-const setPw=(v)=>{try{localStorage.setItem(PW_KEY,v)}catch{}};
-async function api(path,opts={}){
-  const res=await fetch("/api/"+path,{...opts,headers:{"content-type":"application/json","x-app-password":getPw(),...(opts.headers||{})}});
-  if(res.status===401){const e=new Error("401");e.code=401;throw e;}
-  return res.json();
-}
-// Guard against a coach reply that arrives as raw JSON text
-function normalizeCoach(r){
-  if(r.error) return {error:r.error};
-  let message=r.message||""; let proposals=Array.isArray(r.proposals)?r.proposals:[]; let clarify=r.clarify||"";
-  if((!proposals.length&&!clarify)&&typeof message==="string"&&message.trim().startsWith("{")){
-    try{const p=JSON.parse(message.trim());if(p&&typeof p.message==="string"){message=p.message;proposals=Array.isArray(p.proposals)?p.proposals:[];clarify=p.clarify||"";}}
-    catch{return {error:"Couldn't read the coach's reply — tap again."};}
-  }
-  return {message,proposals,clarify};
-}
-
-/* workout proposal apply */
-function applyProposal(prev,p){
-  const batchKey=prev.pending?.date||"manual";
-  let undoStack=prev.undoStack; const top=undoStack[undoStack.length-1];
-  if(!top||top.batchKey!==batchKey) undoStack=[...undoStack,{batchKey,at:todayISO(),workouts:deep(prev.workouts),schedule:{...prev.schedule},goals:prev.goals,overrides:{...prev.overrides}}].slice(-5);
-  let workouts=deep(prev.workouts),schedule={...prev.schedule},goals=prev.goals,overrides={...prev.overrides};
-  const W=(id)=>workouts.find(w=>w.id===id);
-  try{
-    if(p.kind==="edit_exercise"){const w=W(p.workoutId);const e=w&&(w.exercises||[]).find(x=>x.id===p.exerciseId);if(e){const f=p.field;const nv=firstNum(p.value);if(["sets","lo","hi"].includes(f)){if(nv!=null)e[f]=Math.round(nv);}else if(f==="inc"){if(nv!=null)e.inc=nv;}else if(f==="name"||f==="type"){if(p.value)e[f]=p.value;}}}
-    else if(p.kind==="add_exercise"){const w=W(p.workoutId);if(w&&w.exercises)w.exercises.push({id:uid(),name:p.exerciseName||p.name||"New exercise",type:p.type||"free",sets:p.sets||3,lo:p.lo||8,hi:p.hi||12,inc:p.inc!=null?p.inc:2,cue:p.cue||""});}
-    else if(p.kind==="replace_exercise"){const w=W(p.workoutId);if(w&&w.exercises){const idx=w.exercises.findIndex(x=>x.id===p.exerciseId);if(idx>=0){const old=w.exercises[idx];w.exercises[idx]={id:uid(),name:p.exerciseName||p.name||old.name,type:p.type||old.type,sets:p.sets||old.sets,lo:p.lo!=null?p.lo:old.lo,hi:p.hi!=null?p.hi:old.hi,inc:p.inc!=null?p.inc:old.inc,cue:p.cue||old.cue||""};delete overrides[old.id];}}}
-    else if(p.kind==="remove_exercise"){const w=W(p.workoutId);if(w&&w.exercises)w.exercises=w.exercises.filter(x=>x.id!==p.exerciseId);}
-    else if(p.kind==="set_schedule"){if(p.day)schedule[p.day]=p.value;}
-    else if(p.kind==="set_target"){const v=firstNum(p.value);if(p.exerciseId&&v!=null)overrides[p.exerciseId]={value:v,date:todayISO()};}
-    else if(p.kind==="edit_goal"){if(p.newGoalText)goals=p.newGoalText;}
-  }catch(e){}
-  const remaining=(prev.pending?.proposals||[]).filter(x=>x.id!==p.id);
-  return {...prev,workouts,schedule,goals,overrides,undoStack,pending:remaining.length?{...prev.pending,proposals:remaining}:null};
-}
-function applyFoodProposal(prev,p){
-  const tomorrow=localKey(addDays(new Date(),1));
-  const batchKey=prev.foodPending?.date||"manual";
-  let foodUndo=prev.foodUndo; const top=foodUndo[foodUndo.length-1];
-  if(!top||top.batchKey!==batchKey) foodUndo=[...foodUndo,{batchKey,at:todayISO(),foodTargets:deep(prev.foodTargets),foodSuggestions:deep(prev.foodSuggestions)}].slice(-5);
-  let foodTargets={...prev.foodTargets},foodSuggestions=deep(prev.foodSuggestions);
-  try{
-    if(p.kind==="suggest_food"){foodSuggestions[tomorrow]=[...(foodSuggestions[tomorrow]||[]),{name:p.name||"Food",kcal:Number(p.kcal)||0,protein:Number(p.protein)||0}];}
-    else if(p.kind==="target_tweak"){const base=prev.foodTargets[tomorrow]||{kcal:prev.profile.kcalTarget,protein:prev.profile.proteinTarget};foodTargets[tomorrow]={...base,[p.field==="protein"?"protein":"kcal"]:Number(p.value)};}
-  }catch(e){}
-  const remaining=(prev.foodPending?.proposals||[]).filter(x=>x.id!==p.id);
-  return {...prev,foodTargets,foodSuggestions,foodUndo,foodPending:remaining.length?{...prev.foodPending,proposals:remaining}:null};
-}
-
-const sessionName=(state,v)=>{if(v==="run")return "Run";if(v==="football")return "Football";if(v==="off")return "Rest";const w=state.workouts.find(x=>x.id===v);return w?w.name:"Rest";};
-const sessionCode=(v)=>{if(v==="run")return "Run";if(v==="football")return "Fb";if(v==="off")return "—";if(v==="M")return "Mob";return v;};
-
-/* ---- exercise animations: looping line-figure movement cues ---- */
-const ANIM={
- SQUAT_BAR:{bar:1,dur:1.7,A:[75,28,75,46,75,86,60,52,58,40,90,52,92,40,70,108,68,132,80,108,82,132],B:[62,52,67,68,78,102,52,74,50,62,82,74,84,62,90,114,66,132,98,114,78,132]},
- SQUAT:{dur:1.7,A:[75,28,75,46,75,86,67,62,65,84,83,62,85,84,70,108,68,132,80,108,82,132],B:[70,52,72,68,76,100,60,72,54,68,84,72,90,68,86,112,66,132,92,112,80,132]},
- HINGE:{dur:1.8,A:[75,28,75,46,75,86,72,60,72,82,78,60,78,82,72,108,70,132,80,108,82,132],B:[38,56,50,60,84,78,50,78,50,96,56,78,56,96,82,108,80,132,90,108,88,132]},
- NORDIC:{dur:1.9,A:[75,46,75,64,75,96,66,72,60,84,84,72,90,84,75,116,75,128,78,116,78,128],B:[40,86,52,80,72,92,46,96,40,110,52,96,48,110,75,116,75,128,78,116,78,128]},
- JEFFERSON:{dur:2.0,A:[75,28,75,46,75,86,73,60,73,82,77,60,77,82,73,108,72,132,79,108,80,132],B:[72,96,74,78,76,86,73,100,72,118,78,100,78,118,73,110,72,132,79,110,80,132]},
- OHP:{dur:1.5,A:[75,28,75,48,75,90,62,58,64,46,88,58,86,46,72,110,70,132,80,110,80,132],B:[75,28,75,48,75,90,68,34,66,18,82,34,84,18,72,110,70,132,80,110,80,132]},
- PULLUP:{dur:1.6,A:[75,40,75,56,75,96,71,38,70,22,79,38,80,22,74,116,73,134,80,116,81,134],B:[75,28,75,44,75,84,66,40,70,24,84,40,80,24,74,104,73,124,80,104,81,124]},
- BENCH:{dur:1.4,A:[100,92,90,94,54,98,88,86,86,80,92,86,94,80,40,92,30,108,42,94,32,108],B:[100,92,90,94,54,98,88,78,88,64,92,78,92,64,40,92,30,108,42,94,32,108]},
- FACEPULL:{dur:1.4,A:[70,30,72,48,74,90,84,54,96,50,84,60,96,58,71,110,70,132,79,110,80,132],B:[70,30,72,48,74,90,60,52,64,44,60,62,64,54,71,110,70,132,79,110,80,132]},
- BRIDGE:{dur:2.2,A:[112,110,104,106,80,100,110,116,118,130,112,116,120,130,58,108,50,130,62,108,52,130],B:[110,104,100,96,76,74,108,112,118,130,110,112,120,130,54,100,48,130,58,100,50,130]},
- HOLLOW:{dur:1.8,A:[110,104,100,104,60,106,112,100,124,96,112,104,124,100,44,102,28,98,46,104,30,100],B:[110,100,100,100,60,102,112,96,124,90,112,100,124,94,42,96,26,90,44,98,28,92]},
- LSIT:{dur:1.6,A:[70,52,70,70,72,88,64,80,64,96,78,80,78,96,92,86,112,86,92,90,112,90],B:[70,50,70,68,72,84,64,78,64,96,78,78,78,96,94,82,114,80,94,86,114,84]},
- HANDSTAND:{dur:2.2,A:[75,112,75,98,75,58,70,108,68,128,80,108,82,128,73,38,72,20,78,38,80,20],B:[76,112,76,98,76,58,71,108,69,128,81,108,83,128,74,36,73,18,79,36,81,18]},
- PIKEPUSH:{dur:1.3,A:[122,108,114,100,80,60,120,116,120,130,122,116,122,130,64,96,50,130,66,96,52,130],B:[124,122,116,108,82,66,110,116,120,130,126,116,122,130,64,98,50,130,66,98,52,130]},
- LEGRAISE:{dur:1.6,A:[112,108,100,108,64,110,92,112,84,116,96,112,88,116,46,110,28,110,48,112,30,112],B:[112,108,100,108,64,110,92,112,84,116,96,112,88,116,54,86,44,60,56,88,46,62]},
- FRONTSPLIT:{dur:2.4,A:[75,46,75,66,75,96,64,82,62,100,86,82,88,100,54,110,42,128,96,108,110,128],B:[75,72,75,92,75,120,66,104,64,124,84,104,86,124,50,122,26,126,98,122,122,126]},
- HALFSPLIT:{dur:2.2,A:[75,44,75,62,75,90,66,80,64,98,84,80,86,98,58,108,48,128,94,104,100,128],B:[72,58,72,76,72,100,64,90,62,108,80,90,82,108,56,112,46,128,102,118,118,124]},
- MIDDLESPLIT:{dur:2.4,A:[75,40,75,58,75,84,68,72,66,90,82,72,84,90,58,104,48,130,92,104,102,130],B:[75,58,75,76,75,104,70,108,70,124,80,108,80,124,46,118,30,130,104,118,120,130]},
- PANCAKE:{dur:2.2,A:[60,62,60,80,60,108,68,90,80,96,72,92,84,98,84,110,108,110,86,112,110,112],B:[92,104,78,96,60,108,86,100,104,108,88,102,106,110,84,110,108,110,86,112,110,112]},
- HIPFLEXORLUNGE:{dur:2.2,A:[72,42,72,60,72,86,66,72,60,84,78,72,88,84,52,104,36,124,90,100,96,128],B:[74,48,74,66,74,96,66,78,60,90,78,78,88,90,50,110,28,128,92,108,96,128]},
- PNFHAM:{dur:1.9,A:[110,110,100,110,68,112,88,104,70,90,92,106,74,92,58,90,50,66,50,112,34,112],B:[110,110,100,110,68,112,86,100,66,84,90,102,70,86,60,84,56,58,50,112,34,112]},
- NINETY:{dur:2.0,A:[70,64,70,82,70,110,60,94,56,108,80,94,84,108,88,112,100,124,52,112,40,124],B:[80,64,76,82,72,110,62,94,58,108,82,94,86,108,90,116,104,128,54,116,42,128]},
- THORACIC:{dur:2.0,A:[50,96,60,92,88,92,58,100,58,110,66,100,74,108,92,108,100,120,90,110,98,122],B:[48,84,60,88,88,92,58,98,58,110,62,74,58,58,92,108,100,120,90,110,98,122]},
- HIPFLOW:{dur:2.2,A:[60,56,60,72,60,98,66,84,74,92,68,86,76,94,48,110,40,130,88,112,100,130],B:[90,56,90,72,90,98,84,84,92,92,86,86,94,94,60,112,48,130,100,110,108,130]},
- PISTOL:{dur:1.9,A:[75,30,75,48,75,86,84,60,96,58,84,64,96,62,74,108,73,132,92,90,110,86],B:[64,72,68,88,72,108,86,96,100,92,86,100,100,96,86,118,73,132,96,104,116,100]},
- WALKINGLUNGE:{dur:1.7,A:[75,30,75,48,75,88,70,62,68,86,80,62,82,86,60,106,50,128,90,104,96,128],B:[75,42,75,60,75,100,70,74,68,98,80,74,82,98,60,118,50,128,92,112,96,128]},
- GREP:{dur:1.7,A:[75,28,75,46,75,86,67,62,65,84,83,62,85,84,70,108,68,132,80,108,82,132],B:[70,52,72,68,76,100,60,72,54,68,84,72,90,68,86,112,66,132,92,112,80,132]},
- GHOLD:{dur:2.5,A:[75,28,75,46,75,86,67,62,65,84,83,62,85,84,70,108,68,132,80,108,82,132],B:[75,30,75,48,75,88,67,64,65,86,83,64,85,86,70,108,68,132,80,108,82,132]}
-};
-const ANIM_MATCH=[["back squat","SQUAT_BAR"],["deep squat","SQUAT"],["cossack","HIPFLOW"],["pistol","PISTOL"],["walking lunge","WALKINGLUNGE"],["romanian","HINGE"],["deadlift","HINGE"],["nordic","NORDIC"],["jefferson","JEFFERSON"],["overhead press","OHP"],["ohp","OHP"],["pull","PULLUP"],["chin","PULLUP"],["bench","BENCH"],["face pull","FACEPULL"],["row","FACEPULL"],["back bridge","BRIDGE"],["bridge","BRIDGE"],["hollow","HOLLOW"],["l-sit","LSIT"],["l sit","LSIT"],["handstand","HANDSTAND"],["pike","PIKEPUSH"],["pseudo","PIKEPUSH"],["dragon","LEGRAISE"],["90/90","NINETY"],["90 90","NINETY"],["hip switch","NINETY"],["thoracic","THORACIC"],["leg raise","LEGRAISE"],["hip-flexor flow","HIPFLOW"],["hip flexor flow","HIPFLOW"],["hip-flexor lunge","HIPFLEXORLUNGE"],["hip flexor lunge","HIPFLEXORLUNGE"],["pnf","PNFHAM"],["hamstring","PNFHAM"],["pancake","PANCAKE"],["half split","HALFSPLIT"],["front split","FRONTSPLIT"],["middle split","MIDDLESPLIT"],["split","FRONTSPLIT"],["squat","SQUAT"],["lunge","WALKINGLUNGE"]];
-function animSpec(name,type){const n=(name||"").toLowerCase();for(const pair of ANIM_MATCH){if(n.indexOf(pair[0])>=0)return ANIM[pair[1]];}return type==="hold"?ANIM.GHOLD:ANIM.GREP;}
-function demoUrl(name){return "https://www.youtube.com/results?search_query="+encodeURIComponent((name||"")+" form tutorial");}
-// How-to library — shown in the exercise card so you can train without the video.
-// Keyed by exercise name; a stored ex.desc (e.g. set by the coach) always wins over this.
-const DESCRIPTIONS={
-  "Back Squat":"Bar on your upper back, brace your core, then sit down between your hips until your thighs pass parallel and drive up through mid-foot. The 3-second pause at the bottom kills the bounce and builds strength right where you're tight. Chest proud, knees tracking over your toes.",
-  "Romanian Deadlift":"Soft knees, bar close to your legs. Push your hips straight back and let the bar slide down your thighs until you feel a strong hamstring stretch (usually just below the knee), keeping your back flat throughout. Stop when your hamstrings run out of range — not when the bar hits the floor — then squeeze your glutes to stand tall. Your main hamstring builder.",
-  "Nordic Curl":"Kneel with your ankles anchored, body in a straight line from knees to head. Lower toward the floor as slowly as you possibly can, resisting with your hamstrings, then push back up (hands can assist). If you can't control the full range yet, just do the slow lower and push off the floor to reset. Needs your feet anchored — if you can't anchor them, swap it (see below).",
-  "Jefferson Curl":"The opposite of a deadlift — here you WANT to round. Stand on a box with a light weight and slowly peel down one vertebra at a time, chin to chest, letting the spine curl fully; go only as far as you control, then reverse and stack back up bone by bone. Start very light (empty bar or a single plate). This trains a strong, mobile lower back and directly eases your back tightness.",
-  "Walking Lunge":"Step forward into a lunge until both knees are ~90° with the front shin vertical, then push through the front heel to bring the back leg through into the next step, staying tall. As you sink, feel the stretch through the front of the trailing hip — that hip-flexor opening is half the point for your splits.",
-  "Overhead Press":"Bar on your front shoulders, brace abs and glutes, then press straight overhead — nudging your head slightly back so the bar clears your chin — and finish with the bar stacked over mid-foot. Don't lean back; squeeze your glutes to stop the lower back arching. Lower under control to the collarbone.",
-  "Pull-Ups":"Hang from the bar with shoulders lightly engaged, then pull your chest toward the bar by driving your elbows down and back until your chin clears it. Lower all the way to a full hang every rep. Once you can do 10 clean reps, start adding load rather than just more reps.",
-  "DB Bench Press":"Lie back with a dumbbell in each hand at chest level, elbows about 45° from your body. Press up and slightly together until your arms are straight, then lower under control until you feel a stretch across the chest. Keep your shoulder blades pulled back and down into the bench the whole set.",
-  "Face Pulls":"Set a rope or band at head height. Pull it toward your face, splitting your hands so they finish beside your ears with elbows high, and squeeze the rear shoulders for a beat. Light weight, high reps, slow tempo — this is posture and shoulder prehab, not a strength lift.",
-  "Back Bridge Hold":"Lie on your back, hands by your ears (fingers toward your shoulders), feet flat and close to your hips. Push through hands and feet to lift your hips and drive your chest toward your hands, working toward straight arms. If your arms stay bent, that's your level for now — hold the tallest position you can and it opens over time. Push the floor away and breathe.",
-  "Hollow Body Hold":"Lie on your back, press your lower back flat into the floor, then lift your shoulders and legs off the ground into a shallow banana shape. The whole game is keeping your lower back glued down — if it lifts, bend your knees or bring your arms by your sides to make it easier.",
-  "L-Sit":"Hands on the floor or two blocks, push down hard to lift your body, then raise your legs toward a horizontal L. Start tucked (knees to chest), then one leg straight, then both, keeping your shoulders pushed down away from your ears. Even a few seconds counts — build the hold.",
-  "Handstand Wall Hold":"Chest-to-wall is best: face the wall, walk your feet up until your body is stacked and vertical, ribs tucked, legs squeezed together, and hold while breathing. Come down by walking back down the wall. Build the time gradually — this is your shoulder and balance base for later skills.",
-  "Pistol Squat":"Single-leg squat. Hold something for balance or sit back to a box, other leg extended in front; lower under control keeping the heel down, then drive back up. Progress: box → light counterweight held out front → free. Builds single-leg strength AND the deep ankle/hip mobility your squats need.",
-  "Pseudo Planche Push-Up":"Your base-builder — do this first. Hands by your lower ribs, lean your shoulders forward past your hands and push the floor away (protract your shoulder blades). This builds the straight-arm, shoulders-forward pressing strength that makes pike push-ups possible. Start from your knees if a full plank version is too much.",
-  "Pike Push-Up":"Start with your hands ELEVATED on a bench or box — the floor version is brutally hard and that's why it stalls. Hips stacked over shoulders in a pike shape, lower the crown of your head toward the floor between your hands, then press back up. As it gets easy, lower the elevation: box → step → floor → feet-elevated → handstand push-up.",
-  "Dragon Flag":"Lie on a bench and grip behind your head. Keep your body rigid as a plank, lift it up onto your shoulders, then lower it slowly staying dead straight and resisting the whole way. Start tucked, then straddle, then full. Only lower as slowly as you can control — that's where the strength is built.",
-  "Hip-Flexor Lunge Hold":"Half-kneeling: one foot forward, other knee down. Square your hips forward and tuck your tailbone under — you'll feel a strong stretch at the front of the down-leg's hip. Sink gently forward and hold, breathing, without letting your lower back arch (the tuck is what makes it work). Opens the hip flexors that limit your front splits.",
-  "PNF Hamstring":"Lie down, one leg up (strap or hands behind the thigh), and pull it toward you until you feel a firm hamstring stretch. Hold ~30s, then push your leg AGAINST your hands for ~10s without moving, relax, and pull deeper into the new range; repeat. The contract-relax trick unlocks range faster than static stretching.",
-  "Pancake Straddle Lean":"Sit with legs wide and straight, toes up. Hinge from the hips with a FLAT back — chest toward the floor, not head to knees — walking your hands a little further forward each round. Keep the back flat even if you don't go far; depth comes from the hip hinge, not rounding. (Needs straight-leg width — if a legs-together forward fold is still hard, that pike fold should come first.)",
-  "Half Splits Hold":"From half-kneeling, straighten your front leg and hinge your hips back over it — flat back, toes pulled up — for a strong stretch down the front-leg hamstring. Keep the back flat and breathe into it. This is the front-split hamstring side; pair it with the hip-flexor hold for the back-leg side.",
-  "Front Splits (ease in)":"Front leg forward, back leg extended behind, hands on blocks or books for support. Slide the legs apart only as far as you can while breathing calmly — never force or bounce — keeping your hips square to the front. Ease out the moment it turns sharp. Progress is measured in centimetres over weeks.",
-  "Middle Splits (ease in)":"Legs wide to the sides, feet forward or slightly turned out, hands on blocks in front. Let your hips sink toward the floor under control, back tall and legs straight, supporting weight on your hands. Never force the slide — back off at any sharp pinch. Slow, patient loading is how the middle split opens.",
-  "Cossack Squat Flow":"Wide stance. Shift your weight over one bent leg into a deep side lunge — heel down — keeping the other leg straight with toes up, then flow smoothly across to the other side. Stay controlled and sink as deep as your hips allow. Builds hip mobility and single-leg strength at once.",
-  "90/90 Hip Switches":"Sit with both knees bent at 90° — one leg in front, one to the side. Keeping your chest tall, drive from your hips to rotate both knees across to the mirror-image position, controlling the switch rather than flopping. Mobilises internal and external hip rotation, which frees up your squat and splits.",
-  "Deep Squat Hold":"Sink into the bottom of a squat, heels flat, and live there. Chest tall, use your elbows to gently pry your knees out and open the hips, and breathe. If your heels lift, hold something in front as a counterweight or put a small wedge under your heels.",
-  "Thoracic Rotation Flow":"On all fours (or side-lying), reach one arm up and rotate open through your upper back, following your hand with your eyes, then return. Move from the mid-spine, not the lower back — keep your hips still. Restores the upper-back rotation that desk posture steals, and it feeds your bridge.",
-  "Active Leg Raises":"Lie on your back and lift one straight leg as high as you can using only your own muscles — no hands — then lower under control. The point is ACTIVE range: strength at the top of your flexibility, which is what makes splits usable rather than just passive. Keep the other leg down and the movement smooth.",
-  "Hip-Flexor Flow":"A flowing version of the hip-flexor stretch — sink into a low lunge and gently sway side to side rather than holding dead still, keeping the tailbone tucked. Flow for the full time. An easy finisher that loosens the hips without forcing a static hold.",
-  "Seated Pike Fold":"Legs straight and pressed together on the floor, toes up. Hinge from the HIPS with a flat back — think chest to thighs, not nose to knees — and hold where you feel a strong (not sharp) hamstring stretch. This is the prerequisite for the pancake: you build the straight-leg forward fold with legs together first, then widen. Don't let the lower back round to fake more depth.",
-  "Frog Stretch":"On all fours, knees wide with ankles in line with your knees and shins parallel, feet flexed. Keep a flat back and rock your hips slowly back toward your heels until you feel the stretch deep in the inner thighs/groin, then rock forward slightly to release. Small, controlled rocks — never force the end range. Opens the hips for the middle split.",
-  "Cossack Hold":"Wide stance, shift your weight over one bent leg and sink into a deep side-lunge — heel down, chest tall — with the other leg straight and toes up. Hold at the bottom rather than flowing. Builds strength and mobility at the deep end of your hip range, which feeds the middle split.",
-  "Couch Stretch":"Kneel with your rear foot propped up a wall (or couch), front foot planted in a lunge. Tuck your tailbone under and squeeze the rear glute to drive a deep stretch through the front of the back-leg hip and quad. Keep the lower back neutral — don't arch to chase depth. One of the strongest openers for the back leg of your front split.",
-};
-// Progression ladders — start at a rung you can actually train, walk up to the real thing.
-// Each rung: {name, load, howto}. load:false = advance by LESS assistance (never +kg).
-// load:true  = the one rung where added weight = harder. Current rung stored in ex.rung.
-const LADDERS={
-  "Pistol Squat":[
-    {name:"Box squat, high seat", load:false, howto:"Stand on one leg in front of a chair or box set HIGH, other leg extended forward. Sit back and down under control until you lightly tap the seat, then drive up through the heel — no rocking, no pushing off the seat. Heel flat, knee tracking over the foot. Every rep smooth and full-range; if you're crashing down or wobbling, raise the seat."},
-    {name:"Box squat, lower seat", load:false, howto:"Same as the high box, but drop the seat a notch. Still tap-and-stand with control, heel down, no rocking. Keep lowering the seat over the coming weeks as each height gets easy — that's how you advance here: less box, never more weight."},
-    {name:"Counterweight pistol, full depth", load:false, howto:"No box now. Hold a light plate or dumbbell at arm's length straight out in front — it shifts your weight forward and stops you toppling backward. Lower all the way into a full one-leg squat, heel flat, then stand. The weight is HELPING you. Advance by using LESS counterweight over time, not more."},
-    {name:"Free pistol", load:false, howto:"Full one-leg squat, no counterweight, arms free. Lower under control to the bottom (hip below knee), heel flat, no wobble, then stand without rocking or momentum. This is the bodyweight goal — own it for clean reps on every set before you add any load."},
-    {name:"Weighted pistol", load:true, howto:"Hold a dumbbell or kettlebell at your chest and perform a full pistol. NOW the weight is load, not assistance — this is the single rung where adding kg makes it harder. Add small amounts as you get stronger, keeping full depth and control."}
-  ],
-  "Pancake Straddle Lean":[
-    {name:"Narrow straddle", load:false, howto:"Legs straight, knees locked, toes up, opened to a NARROW straddle (about your current ~60cm knee-to-knee). Sit tall, then hinge from the hips with a flat back and hold at the point where your back is about to round — no further. Over the weeks, walk your hands a little further forward at this width while keeping the back flat. Depth comes from the hip hinge, never from rounding. Widen only when this feels easy and clean."},
-    {name:"Wide straddle", load:false, howto:"Same flat-back hinge, but open the legs wider — aim ~90cm knee-to-knee. It'll feel shallower at first; that's expected. Hold at your honest flat-back depth and build from there. Never force the width to the point your back rounds or your knees bend."},
-    {name:"Full pancake", load:false, howto:"Legs opened toward a straight line, as wide as they'll go with knees locked and toes up. Hinge forward with a flat back, chest leading toward the floor. This is the goal — keep it honest: flat back over depth, every single rep."}
-  ]
-};
-const _SEGS=[["sp",1,2],["nk",1,0],["aA1",1,3],["aA2",3,4],["aB1",1,5],["aB2",5,6],["lA1",2,7],["lA2",7,8],["lB1",2,9],["lB2",9,10]];
-
-function ExAnim({name,type}){
-  const ref=useRef(null);
-  const spec=animSpec(name,type);
-  useEffect(()=>{
-    const svg=ref.current;if(!svg)return;let raf;
-    function frame(now){
-      const per=spec.dur*1000,ph=(now%per)/per,tri=ph<.5?ph*2:(1-ph)*2,t=tri<.5?2*tri*tri:1-Math.pow(-2*tri+2,2)/2;
-      const p=spec.A.map((v,k)=>v+(spec.B[k]-v)*t);
-      _SEGS.forEach(function(seg){const e=svg.querySelector("."+seg[0]);if(e){e.setAttribute("x1",p[seg[1]*2]);e.setAttribute("y1",p[seg[1]*2+1]);e.setAttribute("x2",p[seg[2]*2]);e.setAttribute("y2",p[seg[2]*2+1]);}});
-      const hd=svg.querySelector(".hd");if(hd){hd.setAttribute("cx",p[0]);hd.setAttribute("cy",p[1]);}
-      if(spec.bar){const bb=svg.querySelector(".bar");if(bb){bb.setAttribute("x1",p[2]-20);bb.setAttribute("y1",p[3]-4);bb.setAttribute("x2",p[2]+20);bb.setAttribute("y2",p[3]-4);}}
-      raf=requestAnimationFrame(frame);
-    }
-    raf=requestAnimationFrame(frame);return function(){cancelAnimationFrame(raf);};
-  },[name,type]);
-  return (<svg ref={ref} className="exfig" viewBox="0 0 150 150" aria-hidden="true">
-    <line className="floor" x1="14" y1="133" x2="136" y2="133"/>
-    {spec.bar?<line className="bar"/>:null}
-    <line className="sp"/><line className="nk"/><line className="aA1"/><line className="aA2"/><line className="aB1"/><line className="aB2"/><line className="lA1"/><line className="lA2"/><line className="lB1"/><line className="lB2"/>
-    <circle className="hd" r="8"/>
-  </svg>);
-}
-function Toast({msg}){return <div className={"toast"+(msg?" show":"")}>{msg}</div>;}
-
-function ExerciseCard({ex,history,override,logDate,onLog,workoutId,onSwap,onRung}){
-  const isHold=ex.type==="hold";
-  const flowEx=ex.type==="bw"&&(ex.inc||0)===0;
-  const perSetW=ex.type==="free"||ex.type==="machine";
-  const [open,setOpen]=useState(false);
-  const t=isHold?nextHoldTarget(ex,history,override):nextTarget(ex,history,override);
-  const ladder=t.ladder||LADDERS[ex.name];
-  const rungIdx=ladder?(t.rungIdx!=null?t.rungIdx:Math.max(0,Math.min(ladder.length-1,ex.rung||0))):0;
-  const rung=ladder?ladder[rungIdx]:null;
-  const onLoadRung=!!(rung&&rung.load);
-  const flowLike=flowEx||(ladder&&!onLoadRung);
-  const [weight,setWeight]=useState(t.weight!=null?t.weight:"");
-  const [weights,setWeights]=useState(()=>Array.from({length:ex.sets},(_,i)=>(t.weights&&t.weights[i]!=null)?String(t.weights[i]):""));
-  const [reps,setReps]=useState(()=>Array.from({length:ex.sets},()=>""));
-  const [secs,setSecs]=useState(()=>Array.from({length:ex.sets},(_,i)=>isHold?String((t.secsArr&&t.secsArr[i]!=null)?t.secsArr[i]:t.secs):""));
-  const [rpe,setRpe]=useState("");const [note,setNote]=useState("");
-  const [swapMode,setSwapMode]=useState(false);const [swapName,setSwapName]=useState("");const [swapSets,setSwapSets]=useState("");const [swapReps,setSwapReps]=useState("");
-  const [tRun,setTRun]=useState(false);const [tLeft,setTLeft]=useState(null);
-  useEffect(()=>{const tt=isHold?nextHoldTarget(ex,history,override):nextTarget(ex,history,override);
-    if(isHold)setSecs(Array.from({length:ex.sets},(_,i)=>String((tt.secsArr&&tt.secsArr[i]!=null)?tt.secsArr[i]:tt.secs)));
-    else{setWeight(tt.weight!=null?tt.weight:"");setWeights(Array.from({length:ex.sets},(_,i)=>(tt.weights&&tt.weights[i]!=null)?String(tt.weights[i]):""));}
-  },[history,override]);
-  const unit=ex.type==="bw"?"added kg":"kg";
-  const perSide=/per side|\/side|\/leg/i.test(ex.name+" "+(ex.cue||""));
-  function save(){
-    if(isHold){const arr=secs.map(s=>Number(s)||0);if(arr.every(s=>s===0))return;
-      onLog(ex.id,{date:logDate,secs:arr,targetSecs:Number(t.secs)||ex.hi,rpe:Number(rpe)||null,note:note.trim(),name:ex.name,type:"hold"});}
-    else{const r=reps.map(s=>Number(s)||0);if(r.every(x=>x===0))return;
-      if(perSetW){const ws=weights.map(x=>Number(x)||0);onLog(ex.id,{date:logDate,weight:ws[0]||0,weights:ws,reps:r,rpe:Number(rpe)||null,note:note.trim(),name:ex.name,type:ex.type,bw:false});}
-      else onLog(ex.id,{date:logDate,weight:Number(weight)||0,reps:r,rpe:Number(rpe)||null,note:note.trim(),name:ex.name,type:ex.type,bw:ex.type==="bw"});}
-    setReps(Array.from({length:ex.sets},()=>""));setSecs(Array.from({length:ex.sets},()=>isHold?String(t.secs):""));setRpe("");setNote("");setOpen(false);}
-  let lastTxt=null;
-  if(t.last){if(isHold&&t.last.secs)lastTxt=`last ${t.last.secs.join("/")}s · ${fmtDay(localKey(new Date(t.last.date))).replace(/^\w+ /,"")}`;
-    else if(t.last.reps){const wp=(t.lastW&&t.lastW.some(w=>w>0))?t.lastW.join("/")+"kg · ":"";lastTxt=`last ${wp}${t.last.reps.join("/")} · ${fmtDay(localKey(new Date(t.last.date))).replace(/^\w+ /,"")}`;}}
-  useEffect(()=>{
-    if(!tRun||tLeft==null)return;
-    if(tLeft<=0){setTRun(false);if(typeof navigator!=="undefined"&&navigator.vibrate)navigator.vibrate([200,90,200]);return;}
-    const id=setTimeout(()=>setTLeft(s=>s-1),1000);
-    return()=>clearTimeout(id);
-  },[tRun,tLeft]);
-  const bigVal=isHold?t.secs:(flowLike?t.repGoal:(t.weight!=null?t.weight:"—"));
-  const bigUnit=isHold?"s":(flowLike?"reps":(t.weight!=null?unit:""));
-  return (
-    <div className="card">
-      <div className="ex-head" onClick={()=>setOpen(o=>!o)}>
-        <div className="meta"><div className="ex-name">{ex.name}</div><div className="ex-sub">{ex.sets} sets · {isHold?"timed hold":(ex.type==="bw"?"bodyweight":ex.type)}{ladder?` · Rung ${rungIdx+1}/${ladder.length}: ${rung.name}`:(ex.cue?` · ${ex.cue}`:"")}</div></div>
-        <div className="target">
-          <div><span className="kg serif">{bigVal}</span> <span className="unit">{bigUnit}</span></div>
-          <div className="reps">{isHold||flowLike?`× ${ex.sets}${perSide?" /side":""}`:`${t.reps} reps${perSide?" /side":""}`}</div>
-          <div className={"tag "+t.kind}>{t.hint}</div>
-          {lastTxt&&<div className="last">{lastTxt}</div>}
+<!-- ===== ABOUT (top / hero) ===== -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="eyebrow">About</div>
+      <h1>Hey, I'm Joel</h1>
+      <p class="lead">25, London. Trainee accountant by day, filming my life the rest of the time.</p>
+      <p>I'm the type of person who genuinely enjoys trying new things, keeping a structured routine (which inevitably never goes to plan), and finding excuses to buy another gadget I definitely don't need. Most importantly, I am a football and <span class="u">Arsenal</span> fanatic.</p>
+      <p>Friends would describe me as organised, reliable, a perfectionist with a splash of chaos and ADHD.</p>
+      <p>I make content that feels like something you'd actually stop on &mdash; no forced influencer energy, no over-explaining. Just my real, authentic life.</p>
+      <p>When I'm not filming you'll find me cooking something, at the gym, or overthinking a video idea that didn't need a spreadsheet but got one anyway.</p>
+      <div class="niche">
+        <span>day in the life</span><span>food</span><span>fitness</span>
+        <span>football</span><span>london</span>
+      </div>
+      <div class="about-cta">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="#contact">Work with me</a>
+      </div>
+    </div>
+    <div class="about-phone">
+      <div class="device">
+        <span class="notch"></span>
+        <div class="screen">
+          <img src="assets/about-me.jpg" alt="Joel Walters">
         </div>
       </div>
-      {open&&(<div className="ex-open">
-        <div className="howto">
-          <ExAnim name={ex.name} type={ex.type}/>
-          <div className="howto-side">
-            <div className="howto-cue">{ladder?rung.howto:(ex.desc||DESCRIPTIONS[ex.name]||ex.cue||"Controlled tempo, full range of motion.")}</div>
-            <a className="demo-link" href={demoUrl(ex.name)} target="_blank" rel="noopener noreferrer">Watch demo →</a>
-          </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGO WALL ===== -->
+<section class="logos">
+  <div class="logos-label">Trusted by</div>
+  <div class="marquee">
+    <img class="logo-img" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
+    <img class="logo-img" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
+    <div class="logo-chip">Brand 3</div>
+    <div class="logo-chip">Brand 4</div>
+    <!-- duplicate set for seamless loop -->
+    <img class="logo-img" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
+    <img class="logo-img" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
+    <div class="logo-chip">Brand 3</div>
+    <div class="logo-chip">Brand 4</div>
+  </div>
+</section>
+
+<!-- ===== RECENT BRAND WORK (2) ===== -->
+<section class="work" id="work">
+  <div class="eyebrow">Portfolio</div>
+  <h2>Recent brand work</h2>
+  <p class="sub">Swap each tile for a &lt;video&gt; and set the brand caption.</p>
+  <div class="work-grid">
+    <div class="tile">
+      <video src="assets/videos/trainpal.mp4" muted loop autoplay playsinline></video>
+      <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+      <div class="cap">TrainPal</div>
+    </div>
+    <div class="tile">
+      <video src="assets/videos/collider.mp4" muted loop autoplay playsinline></video>
+      <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+      <div class="cap">Collider</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO EXAMPLES ===== -->
+<section class="examples" id="examples">
+  <div class="eyebrow">Portfolio</div>
+  <h2>Video examples</h2>
+  <p class="sub">Duplicate a phone block to add more. Video goes in .screen, caption below.</p>
+  <div class="phone-grid">
+
+    <figure class="phone">
+      <div class="device">
+        <span class="notch"></span>
+        <div class="screen">
+          <video src="assets/videos/league-win.mp4" muted loop autoplay playsinline></video>
+          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>100k</span>
+          <span class="scrubber"></span>
         </div>
-        {ladder&&(<div className="rungbar">
-          <button className="rungbtn" disabled={rungIdx===0} onClick={()=>onRung&&workoutId&&onRung(workoutId,ex.id,-1)}>▼ easier</button>
-          <div className="rungmid"><div className="rungnow">Rung {rungIdx+1} / {ladder.length}</div>{t.readyToAdvance?<div className="rungready">✓ earned the next rung</div>:(t.rangeFail?<div className="runghold">hold — full range first</div>:null)}</div>
-          <button className="rungbtn hi" disabled={rungIdx===ladder.length-1} onClick={()=>onRung&&workoutId&&onRung(workoutId,ex.id,1)}>harder ▲</button>
-        </div>)}
-        {t.why&&<div className="whyline">{t.why}</div>}
-        {isHold&&(<div className="timerbar">
-          <div className="timerdisp">{tLeft==null?`${t.secs}s`:(tLeft<=0?"done ✓":`${tLeft}s`)}</div>
-          <button className="rungbtn hi" onClick={()=>{if(tRun){setTRun(false);}else{setTLeft(v=>(v==null||v<=0)?t.secs:v);setTRun(true);}}}>{tRun?"Pause":(tLeft!=null&&tLeft>0?"Resume":"Start")}</button>
-          {tLeft!=null&&<button className="rungbtn" onClick={()=>{setTRun(false);setTLeft(null);}}>Reset</button>}
-        </div>)}
-        <p className="lbl">{isHold?"Log this — seconds per set":"Log this session — reps per set"}</p>
-        {Array.from({length:ex.sets}).map((_,i)=>(<div className="setrow" key={i}><span className="n">S{i+1}</span>
-          {isHold?(<><input inputMode="numeric" placeholder="secs" value={secs[i]} onChange={e=>{const c=[...secs];c[i]=e.target.value;setSecs(c);}}/><span style={{color:"var(--faint)",fontSize:12,fontWeight:600,textAlign:"center"}}>sec</span></>)
-            :perSetW?(<><input inputMode="numeric" placeholder={t.repGoal?String(t.repGoal):"reps"} value={reps[i]} onChange={e=>{const c=[...reps];c[i]=e.target.value;setReps(c);}}/><input inputMode="decimal" placeholder={unit} value={weights[i]} onChange={e=>{const c=[...weights];c[i]=e.target.value;setWeights(c);}}/></>)
-            :(<><input inputMode="numeric" placeholder={t.repGoal?String(t.repGoal):"reps"} value={reps[i]} onChange={e=>{const c=[...reps];c[i]=e.target.value;setReps(c);}}/>{(ladder&&!onLoadRung)?null:(i===0?<input inputMode="decimal" placeholder={unit} value={weight} onChange={e=>setWeight(e.target.value)}/>:<span style={{color:"var(--faint)",fontSize:13,textAlign:"center",fontWeight:600}}>{weight||"—"} {unit}</span>)}</>)}
-        </div>))}
-        {perSetW&&<div style={{fontSize:11,color:"var(--faint)",fontWeight:600,margin:"0 0 8px"}}>Edit any set's weight for drop sets — progression follows your top (first) set.</div>}
-        <div className="rpe-note"><input inputMode="numeric" placeholder="RPE" value={rpe} onChange={e=>setRpe(e.target.value)}/><input placeholder={isHold?"note (felt strong, tight hips…)":"note (felt easy, L shoulder…)"} value={note} onChange={e=>setNote(e.target.value)}/></div>
-        <div className="save-row"><button className="btn sm" onClick={save}>Save set</button><button className="btn sm ghost" onClick={()=>setOpen(false)}>Close</button></div>
-        <div className="swaprow2">{!swapMode?<button className="swapbtn2" onClick={()=>setSwapMode(true)}>Swap / I did something else</button>:(<div className="swapform"><div className="swaphint">Just for today — logs what you did and tells your coach. Tomorrow's plan stays.</div><input className="swapname" placeholder="What did you do? (e.g. Explosive push-ups)" value={swapName} onChange={e=>setSwapName(e.target.value)}/><input className="swapnum" inputMode="numeric" placeholder="sets" value={swapSets} onChange={e=>setSwapSets(e.target.value)}/><input className="swapnum" inputMode="numeric" placeholder="reps" value={swapReps} onChange={e=>setSwapReps(e.target.value)}/><button className="btn sm" onClick={()=>{const v=swapName.trim();if(v&&onSwap)onSwap(ex,v,swapSets,swapReps);setSwapMode(false);setSwapName("");setSwapSets("");setSwapReps("");}}>Log it</button></div>)}</div>
-        {history&&history.length>0&&(<div className="hist"><div className="h">LAST {Math.min(3,history.length)} SESSIONS</div>
-          {history.slice(-3).reverse().map((h,i)=>(<div className="row" key={i}><span>{fmtDay(localKey(new Date(h.date))).replace(/^\w+ /,"")}</span><span>{h.secs?<b>{h.secs.join("/")}s</b>:<><b>{h.bw?(h.weight?`+${h.weight}kg`:"BW"):(h.weights?h.weights.join("/")+"kg":(h.weight||0)+"kg")}</b> · {(h.reps||[]).join("/")}</>}{h.rpe?` · @${h.rpe}`:""}</span></div>))}</div>)}
-      </div>)}
-    </div>);
-}
-
-function MarkDone({label,sub,done,onMark}){
-  return (<div className="simple"><div className="si serif">{label}</div><div className="sb">{sub}</div>
-    {done?<div className="donepill">✓ Done today</div>:<div style={{marginTop:14}}><button className="btn sm" onClick={onMark}>Mark complete</button></div>}</div>);
-}
-
-const DAILY_MOB=[
- {focus:"Front splits",ex:[
-   {id:"dmf1",name:"Low Lunge Hip-Flexor Hold",type:"hold",sets:2,lo:45,hi:60,inc:10,cue:"per side · square the hips, tuck the tailbone, sink forward"},
-   {id:"dmf2",name:"Half Split (hamstring)",type:"hold",sets:2,lo:45,hi:60,inc:10,cue:"per side · flat back, hinge from the hip over the front leg"},
-   {id:"dmf3",name:"Front Split (ease in)",type:"hold",sets:2,lo:60,hi:90,inc:15,cue:"per side · hands on books, breathe, never force the slide"}]},
- {focus:"Middle splits",ex:[
-   {id:"dmm1",name:"Straddle Pancake Lean",type:"hold",sets:2,lo:60,hi:90,inc:15,cue:"flat back, walk the hands further out each round"},
-   {id:"dmm2",name:"Frog Stretch",type:"hold",sets:2,lo:45,hi:60,inc:10,cue:"knees wide, ankles in line with knees, rock the hips back"},
-   {id:"dmm3",name:"Cossack Hold",type:"hold",sets:2,lo:30,hi:45,inc:5,cue:"per side · sink into one hip, other leg straight"},
-   {id:"dmm4",name:"Middle Split (ease in)",type:"hold",sets:2,lo:45,hi:90,inc:15,cue:"ease the hips down, hands forward for support, relax into it"}]},
- {focus:"Pancake + spine",ex:[
-   {id:"dmp1",name:"Seated Pancake Fold",type:"hold",sets:2,lo:60,hi:90,inc:15,cue:"legs wide, hinge from the hips with a flat back first"},
-   {id:"dmp2",name:"Jefferson Hang",type:"hold",sets:2,lo:30,hi:45,inc:10,cue:"roll down one vertebra at a time, let the spine decompress"},
-   {id:"dmp3",name:"Hamstring PNF",type:"hold",sets:3,lo:30,hi:45,inc:5,cue:"per side · stretch 30s → push into it 10s → relax deeper"}]},
- {focus:"Backbend + shoulders",ex:[
-   {id:"dmb1",name:"Back Bridge Hold",type:"hold",sets:2,lo:30,hi:45,inc:10,cue:"push tall through the shoulders, chase straight arms"},
-   {id:"dmb2",name:"Band Shoulder Dislocates",type:"bw",sets:2,lo:10,hi:15,inc:0,cue:"slow, straight arms, widen the grip if it pinches"},
-   {id:"dmb3",name:"Thoracic Extension Opener",type:"hold",sets:2,lo:45,hi:60,inc:10,cue:"over a bench edge or foam roller, breathe into the upper back"},
-   {id:"dmb4",name:"Couch Stretch",type:"hold",sets:2,lo:45,hi:60,inc:10,cue:"per side · rear foot up the wall, tuck the hips under"}]}
-];
-const DAILY_FLUSH="Get warm first (~3 min): cat-cow ×10, hip circles, leg swings, a few deep squat rocks. Best done warm — after training or a warm shower, never stone cold.";
-function DailyMobility({state,logDate,onLog,onSwap,sessionVal}){
-  const FOCUS_MAP={S1:0,S2:3,S3:1,S4:3,S5:2};
-  const idx=FOCUS_MAP[sessionVal]!=null?FOCUS_MAP[sessionVal]:(Math.floor(Date.now()/86400000)%2===0?0:1);
-  const block=DAILY_MOB[idx];
-  return (<div><h2 className="sec">Daily mobility · {block.focus}</h2>
-    <div className="food-note">{DAILY_FLUSH}</div>
-    {block.ex.map(ex=><ExerciseCard key={ex.id} ex={ex} history={state.logs[ex.id]} override={state.overrides[ex.id]} logDate={logDate} onLog={onLog} onSwap={onSwap}/>)}
-  </div>);
-}
-function TrainView({state,setState,save,flash}){
-  const todayKey=localKey();
-  const [weekStart,setWeekStart]=useState(weekStartKey(todayKey));
-  const todayIdx=(new Date().getDay()+6)%7;
-  const [selIdx,setSelIdx]=useState(weekStart===weekStartKey(todayKey)?todayIdx:0);
-  const [swapOpen,setSwapOpen]=useState(false);
-
-  const plan=state.weekPlans[weekStart]||state.schedule;
-  const dayName=DOW[selIdx];
-  const dayDate=addDays(parseKey(weekStart),selIdx);
-  const dayKey=localKey(dayDate);
-  const logDate=dayKey+"T12:00:00";
-  const sessionVal=plan[dayName]||"off";
-
-  function shiftWeek(n){const nw=localKey(addDays(parseKey(weekStart),n*7));setWeekStart(nw);setSwapOpen(false);}
-  function swap(val){
-    const base={...(state.weekPlans[weekStart]||state.schedule)};const old=base[dayName];
-    if(val!==old){const other=DOW.find(d=>d!==dayName&&base[d]===val);base[dayName]=val;if(other)base[other]=old;}
-    setState(prev=>{const n={...prev,weekPlans:{...prev.weekPlans,[weekStart]:base}};save(n);return n;});
-    setSwapOpen(false);
-  }
-  function log(exId,entry){setState(prev=>{const logs={...prev.logs};logs[exId]=[...(logs[exId]||[]),entry];const n={...prev,logs};save(n);return n;});}
-  function setRung(workoutId,exId,dir){setState(prev=>{const workouts=prev.workouts.map(w=>w.id!==workoutId?w:{...w,exercises:(w.exercises||[]).map(e=>{if(e.id!==exId)return e;const L=LADDERS[e.name];const max=L?L.length-1:0;const cur=Math.max(0,Math.min(max,e.rung||0));return {...e,rung:Math.max(0,Math.min(max,cur+dir))};})});const n={...prev,workouts};save(n);if(flash)flash(dir>0?"Moved up a rung ▲":"Dropped back a rung ▼");return n;});}
-  function didInstead(ex,name,sets,reps){const s=Math.max(1,parseInt(sets,10)||1),r=parseInt(reps,10)||0;setState(prev=>{const id="sub"+Date.now();const logs={...prev.logs};logs[id]=[{date:logDate,name:name+" (instead of "+ex.name+")",reps:Array.from({length:s},()=>r),type:"bw",bw:true}];const manualSwaps=[...(prev.manualSwaps||[]),{date:todayISO(),insteadOf:ex.name,did:name,sets:s,reps:r}].slice(-12);const n={...prev,logs,manualSwaps};save(n);flash("Logged: "+name);return n;});}
-  function marker(id,name){setState(prev=>{const logs={...prev.logs};logs[id]=[...(logs[id]||[]),{date:logDate,name,marker:true}];const n={...prev,logs};save(n);flash(name+" logged");return n;});}
-  const markedToday=(id)=>(state.logs[id]||[]).some(e=>localKey(new Date(e.date))===dayKey);
-
-  const w=state.workouts.find(x=>x.id===sessionVal);
-  const opts=[...state.workouts.map(x=>({v:x.id,l:x.name})),{v:"run",l:"Run"},{v:"football",l:"Football"},{v:"off",l:"Rest"}];
-  const wd=parseKey(weekStart);
-
-  return (
-    <div>
-      <div className="weeknav">
-        <button onClick={()=>shiftWeek(-1)}>‹</button>
-        <span className="wt serif">Week of {wd.getDate()} {MON[wd.getMonth()]}</span>
-        <button onClick={()=>shiftWeek(1)}>›</button>
       </div>
-      <div className="weekstrip">
-        {DOW.map((dn,i)=>{const dd=addDays(parseKey(weekStart),i);const v=plan[dn]||"off";const isToday=localKey(dd)===todayKey;
-          return (<div key={dn} className={"daycell"+(i===selIdx?" sel":"")+(isToday?" today":"")} onClick={()=>{setSelIdx(i);setSwapOpen(false);}}>
-            <div className="dw">{dn[0]}</div><div className="dn serif">{dd.getDate()}</div><div className="dc">{sessionCode(v)}</div></div>);})}
+      <figcaption>League win<span class="cap-sub">edit this caption</span></figcaption>
+    </figure>
+
+    <figure class="phone">
+      <div class="device"><span class="notch"></span>
+        <div class="screen">
+          <video src="assets/videos/wimbledon.mp4" muted loop autoplay playsinline></video>
+          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>7k</span>
+          <span class="scrubber"></span>
+        </div>
       </div>
+      <figcaption>Wimbledon<span class="cap-sub">edit this caption</span></figcaption>
+    </figure>
 
-      <div className="sesshead">
-        <div><div className="st serif">{sessionName(state,sessionVal)}</div><div className="sx">{DOWFULL[dayName]} {parseKey(weekStart).getDate()? addDays(parseKey(weekStart),selIdx).getDate():""} {MON[addDays(parseKey(weekStart),selIdx).getMonth()]}</div></div>
-        <button className="swapbtn" onClick={()=>setSwapOpen(o=>!o)}>Swap</button>
+    <figure class="phone">
+      <div class="device"><span class="notch"></span>
+        <div class="screen">
+          <video src="assets/videos/england.mp4" muted loop autoplay playsinline></video>
+          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>7k</span>
+          <span class="scrubber"></span>
+        </div>
       </div>
-      {swapOpen&&(<div className="swaprow">{opts.map(o=>(<button key={o.v} className={"swapopt"+(o.v===sessionVal?" on":"")} onClick={()=>swap(o.v)}>{o.l}</button>))}</div>)}
+      <figcaption>England<span class="cap-sub">edit this caption</span></figcaption>
+    </figure>
 
-      {w&&(<div>
-        {w.warmup&&<div className="finisher warmup"><div className="t">Warm-up · ~5 min</div><div className="b">{w.warmup}</div></div>}
-        {w.exercises.map(ex=><ExerciseCard key={ex.id} ex={ex} history={state.logs[ex.id]} override={state.overrides[ex.id]} logDate={logDate} onLog={log} workoutId={w.id} onSwap={didInstead} onRung={setRung}/>)}
-        <div className="finisher"><div className="t">Finisher + cooldown</div><div className="b">{w.finisher}</div></div>
-        {FOOD_NOTE[w.id]&&<div className="food-note">{FOOD_NOTE[w.id]}</div>}
-      </div>)}
-      {sessionVal==="run"&&<MarkDone label="Easy run" sub="25–35 min, zone 2 — keep it conversational. Supports the cut without hammering recovery." done={markedToday("run")} onMark={()=>marker("run","Run")}/>}
-      {sessionVal==="football"&&<MarkDone label="Football" sub="This is your conditioning + explosive work for the week. Enjoy it — log it so the coach sees your week." done={markedToday("football")} onMark={()=>marker("football","Football")}/>}
-      {sessionVal!=="football"&&sessionVal!=="run"&&(<div className="alsodid"><span className="alsolbl">Also did today?</span><button className="alsobtn" disabled={markedToday("football")} onClick={()=>marker("football","Football")}>{markedToday("football")?"✓ Football":"+ Football"}</button><button className="alsobtn" disabled={markedToday("run")} onClick={()=>marker("run","Run")}>{markedToday("run")?"✓ Run":"+ Run"}</button></div>)}
-      {sessionVal==="off"&&<div className="simple"><div className="si serif">Rest day</div><div className="sb">Recovery is where you grow. Eat your protein, sleep well. Your daily mobility below still counts.</div></div>}
-      <DailyMobility state={state} logDate={logDate} onLog={log} onSwap={didInstead} sessionVal={sessionVal}/>
-    </div>);
-}
-
-/* ---- shared metrics/snapshot helpers ---- */
-function latestEntry(arr){return (arr&&arr.length)?arr[arr.length-1]:null;}
-function firstReal(arr){return (arr||[]).find(e=>!e.marker)||null;}
-function topVal(e){if(!e||e.marker)return null;if(e.secs&&e.secs.length)return Math.max(...e.secs)+"s";if(e.weights&&e.weights.length)return e.weights[0]+"kg";if(e.bw)return e.weight?"+"+e.weight+"kg":"BW";if(e.weight!=null)return e.weight+"kg";return null;}
-function trainingDays(state,days){const cut=Date.now()-days*86400000;const set=new Set();Object.values(state.logs).forEach(arr=>(arr||[]).forEach(e=>{if(new Date(e.date)>=cut)set.add(localKey(new Date(e.date)));}));return set.size;}
-function keyLiftRows(state){const rows=[];state.workouts.forEach(w=>(w.exercises||[]).forEach(e=>{if(e.inc===0)return;const arr=state.logs[e.id];if(!arr||!arr.length)return;const to=topVal(latestEntry(arr));if(!to)return;rows.push({name:e.name,from:topVal(firstReal(arr)),to});}));return rows.slice(0,8);}
-function flexRows(state){const b=(state.baseline&&state.baseline.flex)||firstReal(state.flexLog);const n=latestEntry(state.flexLog);if(!n)return[];const defs=[["pike","Pike reach","cm",""],["splits","Splits gap","cm",""],["bridge","Bridge","","L"],["pancake","Pancake","","L"]];const out=[];defs.forEach(([k,lbl,suf,pre])=>{if(n[k]==null)return;out.push({label:lbl,from:(b&&b[k]!=null)?pre+b[k]+suf:"—",to:pre+n[k]+suf});});return out;}
-function bodyRows(state){const b=(state.baseline&&state.baseline.body)||firstReal(state.bodyLog);const n=latestEntry(state.bodyLog);if(!n)return[];const defs=[["weight","Weight","kg"],["bodyFat","Body fat","%"],["smm","Muscle (SMM)","kg"],["visceral","Visceral fat",""]];const out=[];defs.forEach(([k,lbl,suf])=>{if(n[k]==null)return;out.push({label:lbl,from:(b&&b[k]!=null)?b[k]+suf:"—",to:n[k]+suf});});return out;}
-function buildCheckinSnippet(state){
-  const weekN=Math.floor(daysBetween(state.startDate)/7)+1;const L=[];
-  L.push("📊 Block check-in — Week "+weekN);
-  L.push("Goal: "+state.profile.weight+"kg → "+state.profile.goalWeight+"kg, stay lean + get flexible");
-  const fr=flexRows(state);if(fr.length){L.push("");L.push("FLEXIBILITY (start → now)");fr.forEach(r=>L.push("• "+r.label+": "+r.from+" → "+r.to));}
-  const br=bodyRows(state);if(br.length){L.push("");L.push("BODY (start → now)");br.forEach(r=>L.push("• "+r.label+": "+r.from+" → "+r.to));}
-  const lr=keyLiftRows(state);if(lr.length){L.push("");L.push("KEY LIFTS (first → latest top set)");lr.forEach(r=>L.push("• "+r.name+": "+(r.from||"—")+" → "+(r.to||"—")));}
-  L.push("");L.push("TRAINING");L.push("• "+trainingDays(state,14)+" sessions logged in the last 14 days");
-  return L.join("\n");
-}
-
-function ProgressView({state,setState,save,flash}){
-  const nameMap={}; state.workouts.forEach(w=>(w.exercises||[]).forEach(e=>{nameMap[e.id]=e.name;}));
-  const byDay={};
-  Object.entries(state.logs).forEach(([exId,arr])=>{(arr||[]).forEach(l=>{const day=localKey(new Date(l.date));(byDay[day]=byDay[day]||[]).push({exId,iso:l.date,name:l.name||nameMap[exId]||exId,weight:l.weight,weights:l.weights,secs:l.secs,reps:l.reps,rpe:l.rpe,bw:l.bw,marker:l.marker});});});
-  const days=Object.keys(byDay).sort((a,b)=>b.localeCompare(a));
-  const weeks={}; days.forEach(day=>{const wk=weekStartKey(day);(weeks[wk]=weeks[wk]||[]).push(day);});
-  const weekKeys=Object.keys(weeks).sort((a,b)=>b.localeCompare(a));
-  function del(exId,iso){setState(prev=>{const logs={...prev.logs};logs[exId]=(logs[exId]||[]).filter(e=>e.date!==iso);const n={...prev,logs};save(n);flash("Removed");return n;});}
-  const fr=flexRows(state),br=bodyRows(state),lr=keyLiftRows(state);
-  const hasSnap=fr.length||br.length||lr.length;
-  const trained=trainingDays(state,14);
-  function copySnap(){copyText(buildCheckinSnippet(state)).then(ok=>flash(ok?"Copied — paste into Claude":"Couldn't copy — long-press to select"));}
-  const Block=({title,rows})=>rows.length?(<div style={{marginBottom:14}}><div className="snap-h">{title}</div>
-    {rows.map((r,i)=>(<div className="snap-row" key={i}><span className="sl-lbl">{r.label||r.name}</span><span className="sl-then">{r.from||"—"}</span><span className="sl-arrow">→</span><span className="sl-now serif">{r.to||"—"}</span></div>))}</div>):null;
-  return (
-    <div>
-      {hasSnap&&(<div className="blockcard">
-        <h3>Where you are vs the start</h3>
-        <Block title="Flexibility" rows={fr}/>
-        <Block title="Body" rows={br}/>
-        <Block title="Key lifts" rows={lr}/>
-        <div className="snap-foot">{trained} session{trained===1?"":"s"} logged in the last 14 days · then → now</div>
-        <div style={{marginTop:13}}><button className="btn sm ghost" onClick={copySnap}>Copy for Claude</button></div>
-      </div>)}
-      {!days.length&&!hasSnap&&<div className="empty">No sessions logged yet.<br/>Log a session on the Calendar tab and your progress shows here.</div>}
-      {weekKeys.map(wk=>{const wdt=parseKey(wk);const cnt=weeks[wk].length;
-        return (<div key={wk}>
-          <div className="weekhdr"><span>Week of {wdt.getDate()} {MON[wdt.getMonth()]}</span><small>{cnt} day{cnt>1?"s":""}</small></div>
-          {weeks[wk].map(day=>(<div className="session" key={day}><div className="sd">{fmtDay(day)}</div>
-            {byDay[day].map((it,i)=>(<div className="sl" key={i}>
-              <span className="nm2">{it.name}</span>
-              <b>{it.marker?"done":it.secs?it.secs.join("/")+"s":(it.bw?(it.weight?`+${it.weight}kg`:"BW"):(it.weights?it.weights.join("/")+"kg":`${it.weight}kg`))+" · "+(it.reps||[]).join("/")+(it.rpe?` @${it.rpe}`:"")}</b>
-              <button className="del" onClick={()=>del(it.exId,it.iso)}>×</button></div>))}
-          </div>))}
-        </div>);})}
-    </div>);
-}
-
-function dayTargets(state,key){return state.foodTargets[key]||{kcal:state.profile.kcalTarget,protein:state.profile.proteinTarget};}
-function FoodRow({food,onAdd,onEdit,onDelete}){
-  const custom=!/^f_/.test(food.id);
-  const [open,setOpen]=useState(false);const [qty,setQty]=useState(food.dq||1);
-  const [edit,setEdit]=useState(false);
-  const [ef,setEf]=useState({name:food.name,unit:food.unit,kcal:String(food.kcal),protein:String(food.protein)});
-  if(edit){
-    return (<div className="frow fedit">
-      <input className="searchbar" placeholder="Name" value={ef.name} onChange={e=>setEf({...ef,name:e.target.value})}/>
-      <div className="prof"><div><label>Unit</label><input value={ef.unit} onChange={e=>setEf({...ef,unit:e.target.value})}/></div><div><label>kcal / unit</label><input inputMode="numeric" value={ef.kcal} onChange={e=>setEf({...ef,kcal:e.target.value})}/></div></div>
-      <div style={{marginTop:8}}><label style={{fontSize:11,fontWeight:700,color:"var(--faint)"}}>Protein g / unit</label><input className="searchbar" inputMode="numeric" value={ef.protein} onChange={e=>setEf({...ef,protein:e.target.value})}/></div>
-      <div className="save-row"><button className="btn sm" onClick={()=>{if(!ef.name||ef.kcal==="")return;onEdit&&onEdit(food.id,{name:ef.name,unit:ef.unit||"serving",kcal:Number(ef.kcal)||0,protein:Number(ef.protein)||0});setEdit(false);}}>Save</button><button className="btn sm ghost" onClick={()=>{setEf({name:food.name,unit:food.unit,kcal:String(food.kcal),protein:String(food.protein)});setEdit(false);}}>Cancel</button><button className="btn sm ghost" style={{marginLeft:"auto",color:"var(--clay)"}} onClick={()=>{onDelete&&onDelete(food.id);}}>Delete</button></div>
-    </div>);
-  }
-  return (<div className="frow">
-    <div className="fn" onClick={()=>setOpen(o=>!o)}><div className="nm">{food.name}{custom&&<span className="ftag">custom</span>}</div><div className="mi">{food.kcal} kcal · {food.protein}g P / {food.unit}</div></div>
-    {!open?<>{custom&&onEdit&&<button className="fedbtn" onClick={()=>setEdit(true)}>Edit</button>}<button className="add" onClick={()=>setOpen(true)}>Add</button></>:(<div className="qbox">
-      <button onClick={()=>setQty(q=>Math.max(0.5,Math.round((q-(0.5))*10)/10))}>−</button>
-      <input inputMode="decimal" value={qty} onChange={e=>setQty(parseFloat(e.target.value)||0)}/>
-      <button onClick={()=>setQty(q=>Math.round((q+(0.5))*10)/10)}>+</button>
-      <button className="add" onClick={()=>{onAdd(food,qty);setOpen(false);setQty(food.dq||1);}}>✓</button></div>)}
-  </div>);
-}
-function estBMR(state){const b=latestEntry(state.bodyLog);const w=(b&&b.weight!=null)?b.weight:(state.profile.weight||75);const lbm=(b&&b.bodyFat!=null)?w*(1-b.bodyFat/100):w*0.85;return Math.round(370+21.6*lbm);}
-function dayWorkoutKcal(state,key){let has=false,fb=false,run=false,mob=true;Object.values(state.logs).forEach(arr=>(arr||[]).forEach(e=>{if(localKey(new Date(e.date))===key){const nm=(e.name||"").toLowerCase();if(/football/.test(nm))fb=true;else if(/run/.test(nm))run=true;else{has=true;if(!e.secs)mob=false;}}}));if(fb)return 500;if(run)return 300;if(!has)return 0;return mob?110:260;}
-function dayBurn(state,key){const bmr=estBMR(state);const lb=latestEntry(state.bodyLog);const w=(lb&&lb.weight)||state.profile.weight||75;const steps=Number((state.steps||{})[key])||0;const stepK=Math.round(steps*w*0.0005);const wk=dayWorkoutKcal(state,key);return {bmr,base:Math.round(bmr*1.1),stepK,wk,total:Math.round(bmr*1.1+stepK+wk)};}
-function recentFoodDays(state,n){return Object.keys(state.foodLog||{}).filter(k=>(state.foodLog[k]||[]).length).sort((a,b)=>b.localeCompare(a)).slice(0,n).map(k=>{const it=state.foodLog[k];const kc=it.reduce((s,i)=>s+(i.kcal||0),0),pr=it.reduce((s,i)=>s+(i.protein||0),0);const b=dayBurn(state,k);return {key:k,kc,pr,burn:b.total,net:b.total-kc};});}
-function FoodView({state,setState,save}){
-  const realToday=localKey();const [today,setToday]=useState(realToday);const items=state.foodLog[today]||[];const tgt=dayTargets(state,today);
-  const totalK=items.reduce((s,i)=>s+i.kcal,0);const totalP=items.reduce((s,i)=>s+i.protein,0);
-  const sugg=state.foodSuggestions[today]||[];
-  const [q,setQ]=useState("");const [busy,setBusy]=useState(false);const [err,setErr]=useState("");
-  const [showAdd,setShowAdd]=useState(false);const [nf,setNf]=useState({name:"",unit:"100g",kcal:"",protein:""});
-  const pending=state.foodPending;
-  const [stepsIn,setStepsIn]=useState(String((state.steps||{})[today]||""));
-  useEffect(()=>{setStepsIn(String((state.steps||{})[today]||""));},[today]);
-  function saveSteps(){setState(prev=>{const steps={...(prev.steps||{})};const v=stepsIn.trim();if(v==="")delete steps[today];else steps[today]=Number(v)||0;const n={...prev,steps};save(n);return n;});}
-  const burn=dayBurn(state,today);const net=burn.total-totalK;
-  const recDays=recentFoodDays(state,7);const wkK=recDays.reduce((s,d)=>s+d.kc,0),wkP=recDays.reduce((s,d)=>s+d.pr,0);
-  function addItem(food,qty){const it={id:uid(),name:food.name,qty,unit:food.unit,kcal:round(food.kcal*qty),protein:round(food.protein*qty)};
-    setState(prev=>{const fl={...prev.foodLog};fl[today]=[...(fl[today]||[]),it];const n={...prev,foodLog:fl};save(n);return n;});}
-  function addSugg(s){const it={id:uid(),name:s.name,qty:1,unit:"serving",kcal:s.kcal,protein:s.protein};
-    setState(prev=>{const fl={...prev.foodLog};fl[today]=[...(fl[today]||[]),it];const fs=deep(prev.foodSuggestions);fs[today]=(fs[today]||[]).filter(x=>x!==s);const n={...prev,foodLog:fl,foodSuggestions:fs};save(n);return n;});}
-  function removeItem(id){setState(prev=>{const fl={...prev.foodLog};fl[today]=(fl[today]||[]).filter(i=>i.id!==id);const n={...prev,foodLog:fl};save(n);return n;});}
-  function addCustom(){if(!nf.name||!nf.kcal)return;setState(prev=>{const foods=[...prev.foods,{id:uid(),name:nf.name,unit:nf.unit||"serving",kcal:Number(nf.kcal)||0,protein:Number(nf.protein)||0,dq:1,step:1}];const n={...prev,foods};save(n);return n;});setNf({name:"",unit:"100g",kcal:"",protein:""});setShowAdd(false);}
-  function editCustom(id,patch){setState(prev=>{const foods=prev.foods.map(f=>f.id===id?{...f,...patch}:f);const n={...prev,foods};save(n);return n;});}
-  function deleteCustom(id){setState(prev=>{const foods=prev.foods.filter(f=>f.id!==id);const n={...prev,foods};save(n);return n;});}
-  async function review(){
-    if(busy)return;setBusy(true);setErr("");
-    const recent={};Object.keys(state.foodLog).sort().slice(-4).forEach(k=>{const it=state.foodLog[k]||[];recent[k]={kcal:it.reduce((s,i)=>s+i.kcal,0),protein:it.reduce((s,i)=>s+i.protein,0)};});
-    const context=JSON.stringify({profile:state.profile,targetsToday:tgt,today:{date:today,kcal:totalK,protein:totalP,items:items.map(i=>`${i.qty} ${i.unit} ${i.name}`)},recentDays:recent});
-    try{const raw=await api("foodcoach",{method:"POST",body:JSON.stringify({message:"",context})});const r=normalizeCoach(raw);
-      if(r.error){setErr(r.error);setBusy(false);return;}
-      const proposals=(r.proposals||[]).map((p,i)=>({...p,id:p.id||("fp"+Date.now()+i)}));
-      setState(prev=>{const n={...prev,foodPending:{date:todayISO(),message:r.message||"",proposals},lastFoodCheckin:todayISO()};save(n);return n;});
-    }catch(e){setErr(e.code===401?"Wrong code — reload.":"Couldn't reach the coach.");}
-    setBusy(false);
-  }
-  const apply=(p)=>setState(prev=>{const n=applyFoodProposal(prev,p);save(n);return n;});
-  const skip=(p)=>setState(prev=>{const rem=(prev.foodPending?.proposals||[]).filter(x=>x.id!==p.id);const n={...prev,foodPending:rem.length?{...prev.foodPending,proposals:rem}:null};save(n);return n;});
-  const undo=()=>setState(prev=>{const st=[...prev.foodUndo];const snap=st.pop();if(!snap)return prev;const n={...prev,foodTargets:snap.foodTargets,foodSuggestions:snap.foodSuggestions,foodUndo:st};save(n);return n;});
-  const kPct=Math.min(100,round(totalK/tgt.kcal*100));const pPct=Math.min(100,round(totalP/tgt.protein*100));
-  const filtered=state.foods.filter(f=>f.name.toLowerCase().includes(q.toLowerCase()));
-  return (<div>
-    <div className="weeknav" style={{marginTop:4,marginBottom:6}}>
-      <button onClick={()=>setToday(localKey(addDays(parseKey(today),-1)))}>‹</button>
-      <span className="wt serif">{today===realToday?"Today":fmtDay(today)}</span>
-      <button onClick={()=>{const nx=localKey(addDays(parseKey(today),1));if(nx<=realToday)setToday(nx);}} style={today>=realToday?{opacity:.4}:{}}>›</button>
-    </div>
-    <div className="totals">
-      <div className="tcard"><div className="tl">Calories</div><div className="tv serif">{totalK}<small> / {tgt.kcal}</small></div><div className="bar"><div className={"fill"+(totalK>tgt.kcal?" over":"")} style={{width:kPct+"%"}}/></div></div>
-      <div className="tcard"><div className="tl">Protein</div><div className="tv serif">{totalP}<small>g / {tgt.protein}g</small></div><div className="bar"><div className="fill prot" style={{width:pPct+"%"}}/></div></div>
-    </div>
-    <div className="blockcard" style={{marginBottom:12}}>
-      <div className="snap-h">Energy balance · {today===realToday?"today":fmtDay(today)}</div>
-      <div className="prof">
-        <div><label>Steps today</label><input inputMode="numeric" placeholder="log your steps" value={stepsIn} onChange={e=>setStepsIn(e.target.value)} onBlur={saveSteps}/></div>
-        <div><label>Est. burn</label><div className="serif" style={{fontWeight:600,fontSize:23,lineHeight:1.2,marginTop:4}}>{burn.total}<span style={{fontSize:12,color:"var(--muted)",fontWeight:600}}> kcal</span></div></div>
+    <figure class="phone">
+      <div class="device"><span class="notch"></span>
+        <div class="screen">
+          <video src="assets/videos/training.mp4" muted loop autoplay playsinline></video>
+          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>4k</span>
+          <span class="scrubber"></span>
+        </div>
       </div>
-      <div className="snap-foot" style={{marginTop:9}}>Resting {burn.base} + steps {burn.stepK} + workout {burn.wk} = {burn.total}. Eaten {totalK} → {net>=0?"deficit "+net:"surplus "+(-net)} kcal{today===realToday?" so far today":""}.<span style={{color:"var(--faint)"}}>Rough estimate — your weight trend is the real check.</span></div>
+      <figcaption>Training<span class="cap-sub">edit this caption</span></figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="eyebrow">Social proof</div>
+  <h2>Client reviews</h2>
+  <div class="review-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>This cut is genuinely outstanding &mdash; polished, engaging, and incredibly watchable. Our whole team loves it. The pacing, visuals, and VO are spot-on, and your creative instincts really shine through. It's clear you put a lot of care into this, and the result is superb. We're truly excited to publish it.</p></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>The team really loves your work: fresh concept, tight pacing, engaging storytelling, and a natural on-camera presence. It's genuinely one of our favourites this round.</p></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Thanks for sharing the content &mdash; this genuinely looks excellent. Really appreciate the work you've put into this.</p></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Really impressed with the content you've created, so thanks again for this.</p></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Your video was exceptional.</p></div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="eyebrow">Get in touch</div>
+  <h2>Let's work together</h2>
+  <div class="contact-rows">
+    <div class="contact-row">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+      <a class="pill" href="mailto:joelwalters00@gmail.com">joelwalters00@gmail.com</a>
     </div>
-    {sugg.length>0&&(<div className="sugg">{sugg.map((s,i)=>(<span className="schip" key={i}>{s.name} · {s.protein}g P<button onClick={()=>addSugg(s)}>+</button></span>))}</div>)}
-    <input className="searchbar" placeholder="Search foods…" value={q} onChange={e=>setQ(e.target.value)}/>
-    <div className="foodlist">{filtered.map(f=><FoodRow key={f.id} food={f} onAdd={addItem} onEdit={editCustom} onDelete={deleteCustom}/>)}{filtered.length===0&&<div style={{padding:16,color:"var(--muted)",fontSize:13}}>No match.</div>}</div>
-    <div style={{marginTop:11}}>
-      {!showAdd?<button className="btn ghost sm" onClick={()=>setShowAdd(true)}>+ Add a custom food</button>:(<div className="blockcard" style={{marginTop:6}}>
-        <input className="searchbar" placeholder="Name" value={nf.name} onChange={e=>setNf({...nf,name:e.target.value})}/>
-        <div className="prof"><div><label>Unit</label><input value={nf.unit} onChange={e=>setNf({...nf,unit:e.target.value})}/></div><div><label>kcal / unit</label><input inputMode="numeric" value={nf.kcal} onChange={e=>setNf({...nf,kcal:e.target.value})}/></div></div>
-        <div style={{marginTop:10}}><label style={{fontSize:11,fontWeight:700,color:"var(--faint)"}}>Protein g / unit</label><input className="searchbar" inputMode="numeric" value={nf.protein} onChange={e=>setNf({...nf,protein:e.target.value})}/></div>
-        <div className="save-row"><button className="btn sm" onClick={addCustom}>Save food</button><button className="btn sm ghost" onClick={()=>setShowAdd(false)}>Cancel</button></div></div>)}
+    <div class="contact-row">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <a class="pill" href="https://instagram.com/joelywalters" target="_blank" rel="noopener">@joelywalters</a>
     </div>
-    {items.length>0&&(<><h2 className="sec">Today's food</h2><div className="blockcard">{items.map(i=>(<div className="logitem" key={i.id}><span className="li-n">{i.name} <span className="li-m">· {i.qty} {i.unit}</span></span><span className="li-m">{i.kcal} · {i.protein}g</span><button className="rm" onClick={()=>removeItem(i.id)}>×</button></div>))}</div></>)}
-    {recDays.length>0&&(<><h2 className="sec">This week</h2>
-      <div className="blockcard">
-        <div style={{display:"flex",justifyContent:"space-between",fontSize:11,fontWeight:700,color:"var(--faint)",textTransform:"uppercase",letterSpacing:".05em",paddingBottom:4}}><span style={{flex:1}}>Day</span><span style={{width:62,textAlign:"right"}}>kcal</span><span style={{width:54,textAlign:"right"}}>protein</span><span style={{width:64,textAlign:"right"}}>deficit</span></div>
-        {recDays.map(d=>(<div key={d.key} onClick={()=>setToday(d.key)} style={{display:"flex",justifyContent:"space-between",fontSize:13.5,padding:"6px 0",borderTop:"1px solid var(--line)",cursor:"pointer",background:d.key===today?"var(--surface2)":"transparent"}}><span style={{flex:1,fontWeight:600}}>{fmtDay(d.key)}</span><span style={{width:62,textAlign:"right",color:"var(--muted)",fontWeight:600}}>{d.kc}</span><span style={{width:54,textAlign:"right",color:"var(--muted)",fontWeight:600}}>{d.pr}g</span><span style={{width:64,textAlign:"right",fontWeight:700,color:d.net>=0?"var(--pine)":"var(--clay)"}}>{d.net>=0?d.net:"+"+(-d.net)}</span></div>))}
-        <div className="snap-foot" style={{marginTop:8}}>7-day total {wkK} kcal · {wkP}g protein · avg {Math.round(wkK/recDays.length)} kcal / {Math.round(wkP/recDays.length)}g per day</div>
-      </div></>)}
-    <h2 className="sec">Plan tomorrow</h2>
-    <div className="coach-box">
-      <button className="btn" onClick={review} disabled={busy}>{busy?"Coach is reviewing…":"Review today & plan tomorrow"}</button>
-      {err&&<div className="err" style={{marginTop:10}}>{err}</div>}
-      {busy&&<div className="think">Looking at today vs your targets…</div>}
-      {!busy&&pending&&(<div>
-        <div className="coach-msg"><div className="who">Your coach</div>{pending.message}</div>
-        {pending.proposals.length===0&&<div className="applied-note">No changes — you're on track for tomorrow.</div>}
-        {pending.proposals.map(p=>(<div className="prop food" key={p.id}><span className="kindtag">{p.kind==="target_tweak"?"Target":"Add tomorrow"}</span><div className="change serif">{p.summary}</div>{p.rationale&&<div className="why">{p.rationale}</div>}<div className="acts"><button className="btn sm" onClick={()=>apply(p)}>Apply</button><button className="btn sm ghost" onClick={()=>skip(p)}>Skip</button></div></div>))}
-      </div>)}
-      {state.foodUndo.length>0&&<div style={{marginTop:16,textAlign:"center"}}><button className="btn link" onClick={undo}>Undo last changes</button></div>}
+    <div class="contact-row">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.6 3.5 3.9v2.5c-1.2.1-2.4-.2-3.5-.8v5.6c0 3.2-2.4 5.3-5.3 5.3-2.7 0-4.9-2-4.9-4.7 0-2.9 2.4-4.8 5.2-4.6v2.6c-.4-.1-.9-.2-1.3-.1-1.1.2-1.9 1-1.8 2.2.1 1.1 1 1.9 2.1 1.9 1.3 0 2.2-1 2.2-2.5V3h3.3z"/></svg></span>
+      <a class="pill" href="https://www.tiktok.com/@joelywalters_" target="_blank" rel="noopener">@joelywalters_</a>
     </div>
-  </div>);
+  </div>
+</section>
+
+<footer>
+  <nav class="footer-nav">
+    <a href="#top">Top</a>
+    <a href="#examples">Examples</a>
+    <a href="#about">About</a>
+    <a href="#contact">Work with me</a>
+    <a href="https://joelsworkoutplan.pages.dev/" target="_blank" rel="noopener">Fitness App</a>
+  </nav>
+  <div class="copyright">&copy; 2026 Joel Walters</div>
+</footer>
+
+<script>
+function toggleSound(btn){
+  var wrap=btn.closest('.tile,.phone');
+  var v=wrap&&wrap.querySelector('video');
+  if(!v) return;
+  var willUnmute=v.muted;
+  document.querySelectorAll('video').forEach(function(x){x.muted=true;});
+  document.querySelectorAll('.sound').forEach(function(b){b.classList.remove('is-on');});
+  if(willUnmute){ v.muted=false; btn.classList.add('is-on'); v.play().catch(function(){}); }
 }
-
-function kindLabel(k){return ({edit_exercise:"Adjust",add_exercise:"Add",remove_exercise:"Remove",set_schedule:"Schedule",set_target:"Set target",edit_goal:"Goal",replace_exercise:"Swap"})[k]||"Change";}
-function CheckinView({state,setState,save,flash}){
-  const [msg,setMsg]=useState("");const [busy,setBusy]=useState(false);const [err,setErr]=useState("");
-  const [reply,setReply]=useState("");
-  const [fx,setFx]=useState({pike:"",splits:"",bridge:"",pancake:""});
-  const [bd,setBd]=useState({weight:"",bodyFat:"",smm:"",visceral:""});
-  const pending=state.pending;const canUndo=state.undoStack.length>0;
-  const thisWeek=state.weekPlans[weekStartKey(localKey())]||state.schedule;
-  const lastFlex=latestEntry(state.flexLog),lastBody=latestEntry(state.bodyLog);
-
-  function saveMetrics(){
-    const flex={pike:numOrNull(fx.pike),splits:numOrNull(fx.splits),bridge:numOrNull(fx.bridge),pancake:numOrNull(fx.pancake)};
-    const body={weight:numOrNull(bd.weight),bodyFat:numOrNull(bd.bodyFat),smm:numOrNull(bd.smm),visceral:numOrNull(bd.visceral)};
-    const hasFlex=Object.values(flex).some(v=>v!=null),hasBody=Object.values(body).some(v=>v!=null);
-    if(!hasFlex&&!hasBody){flash("Enter at least one number");return;}
-    setState(prev=>{let n={...prev};const baseline={...(prev.baseline||{})};
-      if(hasFlex){n.flexLog=[...prev.flexLog,{date:todayISO(),...flex}];if(!baseline.flex)baseline.flex={...flex};}
-      if(hasBody){n.bodyLog=[...prev.bodyLog,{date:todayISO(),...body}];if(!baseline.body)baseline.body={...body};
-        if(body.weight!=null)n.profile={...prev.profile,weight:body.weight};}
-      n.baseline=baseline;save(n);return n;});
-    setFx({pike:"",splits:"",bridge:"",pancake:""});setBd({weight:"",bodyFat:"",smm:"",visceral:""});flash("Metrics saved");
-  }
-  function copySnippet(){copyText(buildCheckinSnippet(state)).then(ok=>flash(ok?"Copied — paste into Claude":"Couldn't copy — long-press to select"));}
-
-  async function runCoach(note){
-    if(!note.trim()||busy)return;setBusy(true);setErr("");
-    const slim={};Object.entries(state.logs).forEach(([k,v])=>{slim[k]=v.slice(-3);});
-    const context=JSON.stringify({profile:state.profile,goals:state.goals,
-      plan:state.workouts.map(w=>({workoutId:w.id,name:w.name,exercises:(w.exercises||[]).map(e=>({exerciseId:e.id,name:e.name,type:e.type,unit:e.type==="hold"?"seconds":"reps + kg",sets:e.sets,lo:e.lo,hi:e.hi,inc:e.inc}))})),
-      flexibilityNow:lastFlex,flexibilityBaseline:state.baseline?state.baseline.flex:null,bodyNow:lastBody,
-      thisWeekSchedule:thisWeek,defaultSchedule:state.schedule,recentSessions:slim,manualSwaps:(state.manualSwaps||[]).slice(-8)});
-    try{const raw=await api("coach",{method:"POST",body:JSON.stringify({message:note,context})});const r=normalizeCoach(raw);
-      if(r.error){setErr(r.error);setBusy(false);return;}
-      if(r.clarify){setState(prev=>{const n={...prev,pending:{date:todayISO(),clarify:r.clarify,note,message:r.message||"",proposals:[]}};save(n);return n;});setMsg("");setBusy(false);return;}
-      const proposals=(r.proposals||[]).map((p,i)=>({...p,id:"p"+Date.now()+i}));
-      setState(prev=>{const n={...prev,pending:{date:todayISO(),message:r.message||"",proposals},checkins:[...prev.checkins,{date:todayISO(),note,message:r.message||""}].slice(-12),lastCheckin:todayISO()};save(n);return n;});
-      setMsg("");
-    }catch(e){setErr(e.code===401?"Wrong code — reload.":"Couldn't reach the coach.");}
-    setBusy(false);
-  }
-  function sendReply(){const orig=state.pending?.note||"";const combined=orig+"\n\n(Answer to your question: "+reply.trim()+")";setReply("");setState(prev=>({...prev,pending:null}));runCoach(combined);}
-  const undo=()=>setState(prev=>{const st=[...prev.undoStack];const snap=st.pop();if(!snap)return prev;const n={...prev,workouts:snap.workouts,schedule:snap.schedule,goals:snap.goals,overrides:snap.overrides,undoStack:st};save(n);flash("Reverted");return n;});
-  const dismiss=()=>setState(prev=>{const n={...prev,pending:null};save(n);return n;});
-  const applyOne=(p)=>setState(prev=>{const n=applyProposal(prev,p);save(n);flash("Applied");return n;});
-  const skipOne=(p)=>setState(prev=>{const rem=(prev.pending&&prev.pending.proposals||[]).filter(x=>x.id!==p.id);const n={...prev,pending:rem.length?{...prev.pending,proposals:rem}:null};save(n);return n;});
-  const applyAll=()=>setState(prev=>{let n=prev;((prev.pending&&prev.pending.proposals)||[]).slice().forEach(p=>{n=applyProposal(n,p);});save(n);flash("Applied");return n;});
-  const weekN=Math.floor(daysBetween(state.startDate)/7)+1;
-  const awaiting=pending&&pending.clarify;
-  const F=(k,ph,st,set)=>(<div><label>{ph}</label><input inputMode="decimal" placeholder={st[k]===""?"—":""} value={st[k]} onChange={e=>set({...st,[k]:e.target.value})}/></div>);
-  return (<div>
-    <div className="goalcard"><div className="k">Current focus</div><div className="v serif">{state.goals}</div><div className="wk">Week {weekN} · {state.profile.weight}kg → {state.profile.goalWeight}kg · last check-in {state.lastCheckin?`${daysBetween(state.lastCheckin)}d ago`:"—"}</div></div>
-
-    <h2 className="sec">Log your numbers</h2>
-    <div className="blockcard">
-      <div className="snap-h">Flexibility</div>
-      <div className="prof">
-        {F("pike","Pike reach (cm)",fx,setFx)}{F("splits","Splits gap (cm)",fx,setFx)}
-        {F("bridge","Bridge (1–3)",fx,setFx)}{F("pancake","Pancake (1–3)",fx,setFx)}
-      </div>
-      <div className="snap-h" style={{marginTop:15}}>InBody / scale</div>
-      <div className="prof">
-        {F("weight","Weight (kg)",bd,setBd)}{F("bodyFat","Body fat (%)",bd,setBd)}
-        {F("smm","Muscle SMM (kg)",bd,setBd)}{F("visceral","Visceral fat (1–20)",bd,setBd)}
-      </div>
-      <div className="save-row" style={{marginTop:14}}><button className="btn sm" onClick={saveMetrics}>Save check-in metrics</button><button className="btn sm ghost" onClick={copySnippet}>Copy for Claude</button></div>
-      <div style={{fontSize:11.5,color:"var(--faint)",fontWeight:500,marginTop:10,lineHeight:1.5}}>Leave any blank — only what you fill in gets saved. Pike reach: how far past (or short of) your toes. Bridge/pancake: 1 = working on it, 3 = full.</div>
-    </div>
-
-    <h2 className="sec">Talk to your coach</h2>
-    <div className="coach-box">
-      <p className="lbl">How did it go?</p>
-      <textarea placeholder="How did training feel? Energy, soreness, niggles, tight spots, what you want more or less of, any change in goals… The coach reads your numbers above too." value={msg} onChange={e=>setMsg(e.target.value)} disabled={!!awaiting}/>
-      <div style={{marginTop:11}}><button className="btn" onClick={()=>runCoach(msg)} disabled={busy||!!awaiting}>{busy?"Coach is working…":"Send check-in"}</button></div>
-      {err&&<div className="err" style={{marginTop:10}}>{err}</div>}
-      {busy&&<div className="think">Reading your week and thinking it through…</div>}
-
-      {!busy&&awaiting&&(<div>
-        <div className="coach-msg"><div className="who">Your coach — quick question</div>{pending.clarify}</div>
-        <textarea style={{marginTop:10}} placeholder="Your answer…" value={reply} onChange={e=>setReply(e.target.value)}/>
-        <div style={{marginTop:10,display:"flex",gap:10}}><button className="btn sm" onClick={sendReply} disabled={!reply.trim()}>Send answer</button><button className="btn sm ghost" onClick={()=>{setReply("");dismiss();}}>Cancel</button></div>
-      </div>)}
-
-      {!busy&&!awaiting&&pending&&(<div>
-        <div className="coach-msg"><div className="who">Your coach</div>{pending.message}</div>
-        {(pending.proposals&&pending.proposals.length>0)?(<div>
-          <div className="al-h" style={{margin:"14px 2px 2px"}}>Suggested changes — your call</div>
-          {pending.proposals.map(p=>(<div className="prop" key={p.id}><span className="kindtag">{kindLabel(p.kind)}</span><div className="change serif">{p.summary}</div>{p.rationale&&<div className="why">{p.rationale}</div>}<div className="acts"><button className="btn sm" onClick={()=>applyOne(p)}>Apply</button><button className="btn sm ghost" onClick={()=>skipOne(p)}>Skip</button></div></div>))}
-          <div style={{marginTop:12,display:"flex",gap:10,justifyContent:"center"}}><button className="btn sm" onClick={applyAll}>Apply all</button><button className="btn link" onClick={dismiss}>Dismiss</button></div>
-        </div>):(<div style={{marginTop:13,textAlign:"center"}}><button className="btn link" onClick={dismiss}>Got it</button></div>)}
-      </div>)}
-      {!busy&&!awaiting&&!pending&&canUndo&&<div style={{marginTop:16,textAlign:"center"}}><button className="btn link" onClick={undo}>Undo last applied changes</button></div>}
-    </div>
-
-    {state.checkins.length>0&&(<><h2 className="sec">Recent check-ins</h2>{state.checkins.slice(-4).reverse().map((c,i)=>(<div className="blockcard" key={i}><div style={{fontSize:12,color:"var(--faint)",fontWeight:700,marginBottom:8}}>{fmtDay(localKey(new Date(c.date)))}</div><div style={{fontSize:13.5,color:"var(--muted)",lineHeight:1.5,fontWeight:500}}>{c.note}</div></div>))}</>)}
-  </div>);
-}
-
-function PlanView({state,setState,save,flash}){
-  const [goalDraft,setGoalDraft]=useState(state.goals);const [prof,setProf]=useState(state.profile);
-  function update(n){setState(n);save(n);}
-  function exportData(){try{const blob=new Blob([JSON.stringify(state)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="block-backup-"+localKey()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);if(flash)flash("Backup downloaded");}catch(e){if(flash)flash("Couldn't export");}}
-  function copyData(){copyText(JSON.stringify(state)).then(ok=>{if(flash)flash(ok?"Copied — paste somewhere safe":"Couldn't copy");});}
-  function importData(e){const f=e.target.files&&e.target.files[0];if(!f)return;if(!window.confirm("Restore from this backup? It replaces your current data."))return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);if(!obj||typeof obj!=="object")throw 0;update(withDefaults(obj));if(flash)flash("Data restored");}catch{if(flash)flash("Couldn't read that backup file");}};r.readAsText(f);}
-  const saveGoal=()=>update({...state,goals:goalDraft});
-  const saveProf=()=>update({...state,profile:{weight:Number(prof.weight)||0,goalWeight:Number(prof.goalWeight)||0,kcalTarget:Number(prof.kcalTarget)||0,proteinTarget:Number(prof.proteinTarget)||0}});
-  function editEx(wid,exId,field,val){update({...state,workouts:state.workouts.map(w=>w.id!==wid?w:{...w,exercises:(w.exercises||[]).map(e=>e.id!==exId?e:{...e,[field]:(field==="name"||field==="type")?val:Number(val)})})});}
-  const removeEx=(wid,exId)=>update({...state,workouts:state.workouts.map(w=>w.id!==wid?w:{...w,exercises:(w.exercises||[]).filter(e=>e.id!==exId)})});
-  const addEx=(wid)=>update({...state,workouts:state.workouts.map(w=>w.id!==wid?w:{...w,exercises:[...(w.exercises||[]),{id:uid(),name:"New exercise",type:"free",sets:3,lo:8,hi:12,inc:2}]})});
-  const setSched=(d,v)=>update({...state,schedule:{...state.schedule,[d]:v}});
-  const opts=[...state.workouts.map(w=>({v:w.id,l:`${w.name}`})),{v:"run",l:"Run"},{v:"football",l:"Football"},{v:"off",l:"Rest"}];
-  const profChanged=JSON.stringify({weight:Number(prof.weight),goalWeight:Number(prof.goalWeight),kcalTarget:Number(prof.kcalTarget),proteinTarget:Number(prof.proteinTarget)})!==JSON.stringify(state.profile);
-  return (<div>
-    <h2 className="sec">Profile & targets</h2>
-    <div className="blockcard"><div className="prof">
-      <div><label>Weight (kg)</label><input inputMode="decimal" value={prof.weight} onChange={e=>setProf({...prof,weight:e.target.value})}/></div>
-      <div><label>Goal (kg)</label><input inputMode="decimal" value={prof.goalWeight} onChange={e=>setProf({...prof,goalWeight:e.target.value})}/></div>
-      <div><label>Daily kcal</label><input inputMode="numeric" value={prof.kcalTarget} onChange={e=>setProf({...prof,kcalTarget:e.target.value})}/></div>
-      <div><label>Daily protein (g)</label><input inputMode="numeric" value={prof.proteinTarget} onChange={e=>setProf({...prof,proteinTarget:e.target.value})}/></div>
-    </div><div style={{marginTop:13}}><button className="btn sm" onClick={saveProf} disabled={!profChanged}>Save profile</button></div></div>
-
-    <h2 className="sec">Your goals</h2>
-    <div className="goalbox"><textarea value={goalDraft} onChange={e=>setGoalDraft(e.target.value)}/><div style={{marginTop:10}}><button className="btn sm" onClick={saveGoal} disabled={goalDraft===state.goals}>Save goals</button></div></div>
-
-    <h2 className="sec">Default week</h2>
-    <div className="blockcard"><div style={{fontSize:12.5,color:"var(--muted)",marginBottom:12,fontWeight:500}}>Your usual week. The calendar starts from this each week — swap individual days there for one-off changes.</div>
-      {DOW.map(d=>(<div className="sched" key={d} style={{display:"grid",gridTemplateColumns:"48px 1fr",gap:10,alignItems:"center",marginBottom:8}}><span style={{fontSize:12,fontWeight:700,color:"var(--muted)"}}>{d.toUpperCase()}</span>
-        <select value={state.schedule[d]} onChange={e=>setSched(d,e.target.value)} style={{background:"var(--surface)",border:"1px solid var(--line)",borderRadius:11,padding:12,width:"100%",boxShadow:"var(--shadow)"}}>{opts.map(o=><option key={o.v} value={o.v}>{o.l}</option>)}</select></div>))}
-    </div>
-    {state.workouts.map(w=>(<div className="blockcard" key={w.id}><h3>{w.name}</h3>
-      {(w.exercises||[]).map(e=>(<div className="edit-ex" key={e.id}><input value={e.name} onChange={ev=>editEx(w.id,e.id,"name",ev.target.value)}/><input inputMode="numeric" value={e.sets} onChange={ev=>editEx(w.id,e.id,"sets",ev.target.value)}/><select value={e.type} onChange={ev=>editEx(w.id,e.id,"type",ev.target.value)}><option value="free">free</option><option value="machine">machine</option><option value="bw">bodywt</option><option value="hold">hold</option></select><button className="x" onClick={()=>removeEx(w.id,e.id)}>×</button></div>))}
-      <button className="btn sm ghost" onClick={()=>addEx(w.id)}>+ add exercise</button></div>))}
-    <h2 className="sec">Your data</h2>
-    <div className="blockcard">
-      <div style={{fontSize:13,color:"var(--muted)",lineHeight:1.55,fontWeight:500,marginBottom:12}}>Your data saves to the cloud on every change. For total peace of mind, download a backup now and then — if anything ever goes wrong, you can restore it here.</div>
-      <div className="save-row">
-        <button className="btn sm" onClick={exportData}>Download backup</button>
-        <button className="btn sm ghost" onClick={copyData}>Copy</button>
-        <label className="btn sm ghost" style={{cursor:"pointer",display:"inline-block"}}>Restore<input type="file" accept="application/json,.json" onChange={importData} style={{display:"none"}}/></label>
-      </div>
-    </div>
-    <div style={{height:16}}/>
-  </div>);
-}
-
-/* ---- New-user onboarding: intake → AI builds a plan anchored to the house design → approve ---- */
-function sanitizePlan(p){
-  const used=new Set();
-  const workouts=(p.workouts||[]).map((w,i)=>{
-    let id=((w&&w.id)||("S"+(i+1))).toString();
-    while(used.has(id)) id=id+"x";
-    used.add(id);
-    return {id,name:(w&&w.name)||("Session "+(i+1)),warmup:(w&&w.warmup)||"",finisher:(w&&w.finisher)||"",
-      exercises:((w&&w.exercises)||[]).map(e=>({id:uid(),name:(e&&e.name)||"Exercise",
-        type:["free","machine","bw","hold"].includes(e&&e.type)?e.type:"free",
-        sets:Number(e&&e.sets)||3,lo:Number(e&&e.lo)||8,hi:Number(e&&e.hi)||12,
-        inc:(e&&e.inc!=null)?Number(e.inc):2,cue:(e&&e.cue)||""}))};
-  });
-  const ids=new Set(workouts.map(w=>w.id));
-  const sched={};DOW.forEach(d=>{const v=p.schedule&&p.schedule[d];sched[d]=(v==="run"||v==="football"||v==="off"||ids.has(v))?v:"off";});
-  return {workouts,schedule:sched};
-}
-
-function Onboarding({onDone}){
-  const [f,setF]=useState({weight:"",goalWeight:"",estimate:true,kcal:"",protein:"",goal:"",routine:"",days:[],commitments:"",length:"45",equipment:"Both",experience:"Intermediate",injuries:""});
-  const set=(k,v)=>setF(p=>({...p,[k]:v}));
-  const toggleDay=(d)=>setF(p=>({...p,days:p.days.includes(d)?p.days.filter(x=>x!==d):[...p.days,d]}));
-  const [phase,setPhase]=useState("form");
-  const [preview,setPreview]=useState(null);
-  const [errMsg,setErrMsg]=useState("");
-  const canGenerate=f.weight&&f.goal&&f.days.length>0;
-
-  async function generate(){
-    setPhase("loading");setErrMsg("");
-    const intake={weightKg:Number(f.weight)||null,goalWeightKg:f.goalWeight?Number(f.goalWeight):null,
-      estimateCaloriesForMe:!!f.estimate,dailyKcalTarget:(!f.estimate&&f.kcal)?Number(f.kcal):null,dailyProteinTarget:(!f.estimate&&f.protein)?Number(f.protein):null,
-      mainGoal:f.goal,currentRoutine:f.routine,trainingDays:f.days,fixedCommitments:f.commitments,
-      preferredSessionLengthMin:Number(f.length)||45,equipment:f.equipment,experience:f.experience,injuriesOrLimitations:f.injuries};
-    try{
-      const r=await api("buildplan",{method:"POST",body:JSON.stringify({intake:JSON.stringify(intake)})});
-      if(r.error){setErrMsg(r.error);setPhase("form");return;}
-      const clean=sanitizePlan(r);const rp=r.profile||{};
-      setPreview({message:r.message||"Here's your starting plan.",goals:r.goals||f.goal,
-        profile:{weight:Number(rp.weight)||Number(f.weight)||0,goalWeight:Number(rp.goalWeight)||Number(f.goalWeight)||Number(f.weight)||0,
-          kcalTarget:Number(rp.kcalTarget)||Number(f.kcal)||2200,proteinTarget:Number(rp.proteinTarget)||Number(f.protein)||150},
-        workouts:clean.workouts,schedule:clean.schedule});
-      setPhase("preview");
-    }catch(e){setErrMsg(e.code===401?"Your code stopped working — reload and enter it again.":"Couldn't reach the plan builder — tap Build again.");setPhase("form");}
-  }
-
-  function approve(){
-    onDone(withDefaults({version:6,startDate:todayISO(),onboarded:true,profile:preview.profile,goals:preview.goals,workouts:preview.workouts,schedule:preview.schedule}));
-  }
-
-  if(phase==="loading") return (<div className="wrap" style={{paddingTop:64,textAlign:"center",color:"var(--muted)"}}><div style={{fontFamily:"Fraunces",fontWeight:600,fontSize:34,color:"var(--pine)",marginBottom:16,letterSpacing:"-.02em"}}>Block</div><p style={{fontWeight:500,lineHeight:1.5}}>Building your plan around your answers…<br/>this takes a few seconds.</p></div>);
-
-  if(phase==="preview"&&preview){
-    const nameFor=(v)=>v==="run"?"Run":v==="football"?"Football":v==="off"?"Rest":((preview.workouts.find(w=>w.id===v)||{}).name||"Rest");
-    const repLabel=(e)=>e.type==="hold"?(e.sets+"×"+e.lo+"–"+e.hi+"s"):(e.sets+"×"+e.lo+"–"+e.hi);
-    return (<div className="wrap" style={{paddingTop:28,paddingBottom:44}}>
-      <h2 className="sec" style={{marginTop:0}}>Your plan</h2>
-      <div className="blockcard" style={{lineHeight:1.55,fontWeight:500}}>{preview.message}</div>
-      <div className="blockcard">
-        <div style={{fontSize:12.5,fontWeight:700,color:"var(--faint)",textTransform:"uppercase"}}>Goal</div>
-        <div style={{color:"var(--ink)",fontSize:14.5,margin:"5px 0 13px",fontWeight:500,lineHeight:1.5}}>{preview.goals}</div>
-        <div style={{fontSize:12.5,fontWeight:700,color:"var(--faint)",textTransform:"uppercase"}}>Targets</div>
-        <div style={{color:"var(--ink)",fontSize:14.5,marginTop:5,fontWeight:500}}>{preview.profile.weight}kg → {preview.profile.goalWeight}kg · {preview.profile.kcalTarget} kcal · {preview.profile.proteinTarget}g protein</div>
-      </div>
-      <div className="blockcard">
-        <div style={{fontSize:12.5,fontWeight:700,color:"var(--faint)",textTransform:"uppercase",marginBottom:9}}>Your week</div>
-        {DOW.map(d=>(<div key={d} style={{display:"flex",justifyContent:"space-between",fontSize:13.5,padding:"4px 0",fontWeight:500}}><span style={{fontWeight:700,color:"var(--muted)"}}>{d}</span><span style={{color:"var(--ink)"}}>{nameFor(preview.schedule[d])}</span></div>))}
-      </div>
-      {preview.workouts.map(w=>(<div className="blockcard" key={w.id}>
-        <h3 style={{margin:"0 0 6px",fontSize:15.5}}>{w.name}</h3>
-        {w.warmup?<div style={{fontSize:12,color:"var(--faint)",marginBottom:8,fontWeight:500,lineHeight:1.45}}>Warm-up · {w.warmup}</div>:null}
-        {w.exercises.map(e=>(<div key={e.id} style={{display:"flex",justifyContent:"space-between",fontSize:13.5,padding:"5px 0",borderTop:"1px solid var(--line)"}}><span>{e.name}</span><span style={{color:"var(--muted)",fontWeight:600,whiteSpace:"nowrap",marginLeft:12}}>{repLabel(e)}</span></div>))}
-        {w.finisher?<div style={{fontSize:12,color:"var(--faint)",marginTop:8,fontWeight:500,lineHeight:1.45}}>Finisher · {w.finisher}</div>:null}
-      </div>))}
-      <div style={{fontSize:12.5,color:"var(--muted)",margin:"2px 2px 16px",fontWeight:500,lineHeight:1.5}}>Fine-tune anything in the Plan tab afterwards — your coach tunes it every couple of weeks.</div>
-      <button className="btn" onClick={approve}>Looks good — start training</button>
-      <div style={{display:"flex",gap:10,marginTop:10}}>
-        <button className="btn ghost" onClick={generate}>Regenerate</button>
-        <button className="btn ghost" onClick={()=>setPhase("form")}>Edit answers</button>
-      </div>
-    </div>);
-  }
-
-  const chip=(active)=>({padding:"10px 0",borderRadius:11,border:"1px solid var(--line)",background:active?"var(--pine)":"var(--surface)",color:active?"#fff":"var(--ink)",fontWeight:700,fontSize:13,boxShadow:"var(--shadow)",flex:1});
-  const inp={width:"100%",background:"var(--surface2)",border:"1px solid var(--line)",borderRadius:10,padding:11};
-  const sel={width:"100%",background:"var(--surface)",border:"1px solid var(--line)",borderRadius:11,padding:12,boxShadow:"var(--shadow)"};
-  const lbl={fontSize:11,fontWeight:700,color:"var(--faint)",textTransform:"uppercase",display:"block",marginBottom:6};
-  return (<div className="wrap" style={{paddingTop:28,paddingBottom:44}}>
-    <div style={{fontFamily:"Fraunces",fontWeight:600,fontSize:32,color:"var(--pine)",letterSpacing:"-.02em"}}>Welcome to Block</div>
-    <p style={{color:"var(--muted)",fontSize:14,margin:"5px 0 0",fontWeight:500,lineHeight:1.5}}>Answer a few questions and your plan gets built around you. You can change anything later.</p>
-
-    <h2 className="sec">You</h2>
-    <div className="blockcard">
-      <div className="prof">
-        <div><label style={lbl}>Weight (kg)</label><input style={inp} inputMode="decimal" value={f.weight} onChange={e=>set("weight",e.target.value)}/></div>
-        <div><label style={lbl}>Goal weight (kg)</label><input style={inp} inputMode="decimal" placeholder="blank = maintain" value={f.goalWeight} onChange={e=>set("goalWeight",e.target.value)}/></div>
-      </div>
-      <label style={{display:"flex",alignItems:"center",gap:9,marginTop:14,fontSize:14,fontWeight:500}}><input type="checkbox" checked={f.estimate} onChange={e=>set("estimate",e.target.checked)} style={{width:18,height:18}}/>Estimate my calories and protein for me</label>
-      {!f.estimate?(<div className="prof" style={{marginTop:12}}>
-        <div><label style={lbl}>Daily kcal</label><input style={inp} inputMode="numeric" value={f.kcal} onChange={e=>set("kcal",e.target.value)}/></div>
-        <div><label style={lbl}>Daily protein (g)</label><input style={inp} inputMode="numeric" value={f.protein} onChange={e=>set("protein",e.target.value)}/></div>
-      </div>):null}
-    </div>
-
-    <h2 className="sec">Your goal</h2>
-    <div className="goalbox"><textarea placeholder="What do you want to achieve? e.g. get stronger, lean down, touch my toes, build muscle for football…" value={f.goal} onChange={e=>set("goal",e.target.value)}/></div>
-
-    <h2 className="sec">How you train now</h2>
-    <div className="goalbox"><textarea placeholder="Your current routine or split, if any. e.g. push/pull/legs 3x a week — or 'nothing structured yet'." value={f.routine} onChange={e=>set("routine",e.target.value)}/></div>
-
-    <h2 className="sec">Your week</h2>
-    <div className="blockcard">
-      <label style={lbl}>Which days do you usually train?</label>
-      <div style={{display:"flex",gap:6,marginBottom:15}}>{DOW.map(d=>(<button key={d} onClick={()=>toggleDay(d)} style={chip(f.days.includes(d))}>{d[0]}</button>))}</div>
-      <label style={lbl}>Any fixed commitments?</label>
-      <input style={inp} placeholder="e.g. football Tue & Sun, run Sat" value={f.commitments} onChange={e=>set("commitments",e.target.value)}/>
-      <label style={{...lbl,marginTop:15}}>Preferred workout length</label>
-      <select style={sel} value={f.length} onChange={e=>set("length",e.target.value)}><option value="30">Around 30 min</option><option value="45">Around 45 min</option><option value="60">Around 60 min</option></select>
-    </div>
-
-    <h2 className="sec">Setup</h2>
-    <div className="blockcard">
-      <label style={lbl}>Equipment</label>
-      <select style={sel} value={f.equipment} onChange={e=>set("equipment",e.target.value)}><option>Full gym</option><option>Home only</option><option>Both</option></select>
-      <label style={{...lbl,marginTop:15}}>Experience</label>
-      <select style={sel} value={f.experience} onChange={e=>set("experience",e.target.value)}><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
-      <label style={{...lbl,marginTop:15}}>Injuries or limitations (optional)</label>
-      <input style={inp} placeholder="e.g. dodgy left knee, tight lower back" value={f.injuries} onChange={e=>set("injuries",e.target.value)}/>
-    </div>
-
-    {errMsg?<div style={{margin:"8px 2px 12px",color:"#b4432f",fontWeight:600,fontSize:13.5}}>{errMsg}</div>:null}
-    <button className="btn" onClick={generate} disabled={!canGenerate} style={!canGenerate?{opacity:.55}:null}>Build my plan</button>
-    {!canGenerate?<div style={{fontSize:12.5,color:"var(--faint)",marginTop:9,textAlign:"center",fontWeight:500}}>Add your weight, your goal, and at least one training day.</div>:null}
-    <div style={{height:14}}/>
-  </div>);
-}
-
-function App(){
-  const [authed,setAuthed]=useState(false);const [pwInput,setPwInput]=useState("");const [err,setErr]=useState("");const [needsOnboarding,setNeedsOnboarding]=useState(false);
-  const [state,setStateRaw]=useState(null);const [tab,setTab]=useState("train");const [toast,setToast]=useState("");const tRef=useRef();
-  const [saveStatus,setSaveStatus]=useState("saved");const unsavedRef=useRef(null);
-  const setState=(u)=>setStateRaw(u);
-  const flash=(m)=>{setToast(m);clearTimeout(tRef.current);tRef.current=setTimeout(()=>setToast(""),1400);};
-  async function load(){try{const r=await api("state");if(r.state==null){setNeedsOnboarding(true);setAuthed(true);}else{setStateRaw(withDefaults(r.state));setNeedsOnboarding(false);setAuthed(true);}}catch(e){if(e.code===401){setAuthed(false);setErr("Wrong code.");}else setErr("Couldn't connect.");}}
-  useEffect(()=>{if(getPw())load();},[]);
-  async function unlock(){setErr("");setPw(pwInput);try{const r=await api("state");if(r.state==null){setNeedsOnboarding(true);setAuthed(true);}else{setStateRaw(withDefaults(r.state));setNeedsOnboarding(false);setAuthed(true);}}catch(e){setErr(e.code===401?"Wrong code.":"Couldn't connect.");setPw("");}}
-  async function save(next){setSaveStatus("saving");unsavedRef.current=next;try{await api("state",{method:"POST",body:JSON.stringify({state:next})});setSaveStatus("saved");unsavedRef.current=null;}catch{setSaveStatus("failed");}}
-  function retrySave(){if(unsavedRef.current)save(unsavedRef.current);}
-  if(!authed) return (<div className="lock"><div className="mark serif">Block</div><p>Your training. Enter your code.</p><input type="password" placeholder="your code" value={pwInput} onChange={e=>setPwInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&unlock()} autoFocus/><div className="err">{err}</div><button className="btn" onClick={unlock}>Unlock</button></div>);
-  if(needsOnboarding) return <Onboarding onDone={b=>{setStateRaw(b);save(b);setNeedsOnboarding(false);}}/>;
-  if(!state) return <div className="wrap" style={{paddingTop:48,color:"var(--muted)"}}>Loading…</div>;
-  const hour=new Date().getHours();const greet=hour<12?"Good morning":hour<18?"Good afternoon":"Good evening";
-  const planNow=state.weekPlans[weekStartKey(localKey())]||state.schedule;
-  const todayVal=planNow[DOW[(new Date().getDay()+6)%7]]||"off";
-  const todayName=sessionName(state,todayVal);
-  const checkinDue=daysBetween(state.lastCheckin)>=14;
-  return (<div className="wrap">
-    <header><div className="hello serif">{greet}</div><div className="sub">Today · <b>{todayName}</b> <span className={"savedot "+saveStatus}>· {saveStatus==="saving"?"saving…":saveStatus==="failed"?"not saved":"saved"}</span></div>
-      {saveStatus==="failed"&&<div className="savefail" onClick={retrySave}>⚠ Your last change didn't save — tap to retry</div>}
-      {checkinDue&&tab!=="checkin"&&(<div className="banner"><div className="txt">It's been a fortnight — log your numbers and let your coach tune the next block.</div><button onClick={()=>setTab("checkin")}>Check in</button></div>)}
-    </header>
-    {tab==="train"&&<TrainView state={state} setState={setState} save={save} flash={flash}/>}
-    {tab==="progress"&&<ProgressView state={state} setState={setState} save={save} flash={flash}/>}
-    {tab==="food"&&<FoodView state={state} setState={setState} save={save}/>}
-    {tab==="checkin"&&<CheckinView state={state} setState={setState} save={save} flash={flash}/>}
-    {tab==="plan"&&<PlanView state={state} setState={setState} save={save} flash={flash}/>}
-    <Toast msg={toast}/>
-    <nav>
-      <button className={tab==="train"?"on":""} onClick={()=>setTab("train")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Calendar</button>
-      <button className={tab==="progress"?"on":""} onClick={()=>setTab("progress")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5M4 19h16M8 16v-5M13 16V8M18 16v-3"/></svg>Progress</button>
-      <button className={tab==="food"?"on":""} onClick={()=>setTab("food")}>{state.foodPending&&<span className="dot"/>}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3v7M10 3v7M8 10v11M6 3a2 2 0 0 0 4 0M17 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4v9"/></svg>Food</button>
-      <button className={tab==="checkin"?"on":""} onClick={()=>setTab("checkin")}>{(checkinDue||state.pending)&&<span className="dot"/>}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Coach</button>
-      <button className={tab==="plan"?"on":""} onClick={()=>setTab("plan")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Plan</button>
-    </nav>
-  </div>);
-}
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
 </body>
 </html>
