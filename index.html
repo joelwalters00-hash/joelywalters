@@ -31,6 +31,14 @@
   img,video{display:block;max-width:100%}
   h1,h2,h3{letter-spacing:-.02em;line-height:1.06;color:var(--ink)}
 
+  /* ---- font preview bar (TEMPORARY — remove once you pick) ---- */
+  .fontbar{position:fixed;top:12px;right:12px;z-index:200;background:var(--ink);
+    color:var(--cream);padding:8px 12px;border-radius:10px;display:flex;align-items:center;
+    gap:10px;font-size:.8rem;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+  .fontbar select{font:inherit;padding:5px 8px;border-radius:6px;border:none;cursor:pointer}
+  .fontbar .hint{opacity:.55;font-size:.68rem}
+  @media(max-width:640px){.fontbar .hint{display:none}.fontbar{top:8px;right:8px}}
+
   nav{position:sticky;top:0;z-index:50;background:rgba(245,240,232,.85);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 24px;
@@ -62,33 +70,13 @@
     background:linear-gradient(160deg,#cfc7ba,#ded6c9);
     display:flex;align-items:center;justify-content:center;color:var(--grey);font-size:.78rem}
   .screen video,.screen img{width:100%;height:100%;object-fit:cover}
-  .scrubber{position:absolute;left:12px;right:12px;bottom:12px;height:3px;
-    background:rgba(245,240,232,.4);border-radius:99px;z-index:2}
-  .scrubber::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
-    width:9px;height:9px;border-radius:50%;background:var(--cream)}
-  .play{position:absolute;inset:0;margin:auto;width:44px;height:44px;border-radius:50%;
-    background:rgba(33,30,27,.35);display:flex;align-items:center;justify-content:center;z-index:2}
-  .play::after{content:"";border-left:12px solid var(--cream);border-top:8px solid transparent;
-    border-bottom:8px solid transparent;margin-left:3px}
 
-  /* view-count overlay (shows on hover) */
-  .views{position:absolute;left:12px;bottom:12px;z-index:4;display:flex;align-items:center;
+  /* view-count overlay (shows on hover, top-left so native controls stay clear) */
+  .views{position:absolute;left:10px;top:10px;z-index:4;display:flex;align-items:center;
     gap:6px;color:var(--cream);font-weight:600;font-size:.82rem;
     text-shadow:0 1px 4px rgba(0,0,0,.6);opacity:0;transition:opacity .2s;pointer-events:none}
   .views svg{width:15px;height:15px;flex:none}
   .tile:hover .views,.phone:hover .views{opacity:1}
-
-  /* sound toggle button */
-  .sound{position:absolute;right:12px;bottom:12px;z-index:5;width:30px;height:30px;
-    border:none;border-radius:50%;background:rgba(10,10,10,.55);color:var(--cream);
-    display:flex;align-items:center;justify-content:center;cursor:pointer;
-    padding:0;transition:background .2s}
-  .sound:hover{background:rgba(10,10,10,.8)}
-  .sound:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-  .sound svg{width:16px;height:16px;pointer-events:none}
-  .sound .on{display:none}
-  .sound.is-on .off{display:none}
-  .sound.is-on .on{display:block}
 
   /* ---- ABOUT (top) ---- */
   .about{padding-top:64px}
@@ -104,37 +92,36 @@
   .about-cta{display:flex;flex-wrap:wrap;gap:12px}
   .about-phone{max-width:360px;justify-self:center;width:100%}
 
-  /* ---- logos ---- */
-  .logos{padding-top:0;padding-bottom:0;max-width:none;overflow:hidden;
+  /* ---- logos (static, shake on hover) ---- */
+  .logos{padding:0;max-width:none;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
   .logos-label{text-align:center;font-size:.72rem;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--grey);padding:22px 0 6px}
-  .marquee{display:flex;gap:64px;padding:20px 0 32px;width:max-content;
-    align-items:center;animation:scroll 26s linear infinite}
-  @media (prefers-reduced-motion:reduce){.marquee{animation:none;flex-wrap:wrap;
-    justify-content:center;width:auto;padding:20px 24px 32px}}
-  .logos:hover .marquee{animation-play-state:paused}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  .logo-chip{height:38px;min-width:120px;display:flex;align-items:center;
-    justify-content:center;color:var(--grey);font-weight:600;font-size:.95rem;
-    white-space:nowrap;opacity:.75}
-  .logo-img{height:34px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.65;transition:.2s}
-  .logo-img:hover{filter:grayscale(0);opacity:1}
+    text-transform:uppercase;color:var(--grey);padding:24px 0 4px}
+  .logo-row{display:flex;gap:72px;align-items:center;justify-content:center;
+    flex-wrap:wrap;padding:22px 24px 34px}
+  .logo-img{height:40px;width:auto;object-fit:contain;transition:transform .2s}
+  .logo-img:hover{animation:shake .5s ease}
+  @keyframes shake{
+    10%,90%{transform:translateX(-1px) rotate(-1deg)}
+    20%,80%{transform:translateX(2px) rotate(1deg)}
+    30%,50%,70%{transform:translateX(-4px) rotate(-2deg)}
+    40%,60%{transform:translateX(4px) rotate(2deg)}
+  }
+  @media (prefers-reduced-motion:reduce){.logo-img:hover{animation:none}}
 
   /* ---- recent brand work (2) ---- */
   .work h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:8px}
   .work .sub{color:var(--grey);margin-bottom:38px}
   .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,320px));gap:24px;justify-content:start}
   @media(max-width:560px){.work-grid{grid-template-columns:1fr;max-width:320px}}
-  .tile{aspect-ratio:9/16;background:var(--white);border-radius:14px;position:relative;
+  .tile{aspect-ratio:9/16;background:var(--ink);border-radius:14px;position:relative;
     overflow:hidden;border:1px solid var(--line);transition:transform .25s;
     box-shadow:0 12px 40px rgba(33,30,27,.08)}
   .tile:hover{transform:translateY(-4px)}
-  .tile .ph{position:absolute;inset:0;display:flex;align-items:center;
-    justify-content:center;color:var(--grey);font-size:.8rem}
-  .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:14px;
+  .tile video{width:100%;height:100%;object-fit:cover}
+  .tile .cap{position:absolute;left:0;right:0;top:0;padding:14px;z-index:3;pointer-events:none;
     font-weight:600;font-size:.95rem;color:var(--cream);
-    background:linear-gradient(transparent,rgba(33,30,27,.85))}
+    background:linear-gradient(rgba(33,30,27,.85),transparent)}
 
   /* ---- video examples ---- */
   .examples h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:8px}
@@ -145,7 +132,8 @@
   .phone{margin:0;text-align:center}
   .phone:hover .device{transform:translateY(-5px)}
   .phone figcaption{margin-top:16px;font-weight:600;font-size:.9rem;color:var(--ink)}
-  .phone .cap-sub{display:block;font-weight:400;font-size:.78rem;color:var(--grey);margin-top:3px}
+  .ph-empty{color:var(--grey);font-size:.8rem;letter-spacing:.02em}
+  .phone.placeholder .device{box-shadow:0 12px 30px rgba(33,30,27,.10);opacity:.75}
 
   /* ---- reviews ---- */
   .reviews h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:38px}
@@ -179,6 +167,13 @@
 </head>
 <body id="top">
 
+<!-- TEMPORARY font previewer -->
+<div class="fontbar">
+  <label for="fontSel">Font</label>
+  <select id="fontSel"></select>
+  <span class="hint">preview only — tell me your pick</span>
+</div>
+
 <nav>
   <div class="nav-inner">
     <div class="brand">Joel Walters</div>
@@ -207,7 +202,7 @@
         <span>football</span><span>london</span>
       </div>
       <div class="about-cta">
-        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-primary" href="#examples">See more of me</a>
         <a class="btn btn-ghost" href="#contact">Work with me</a>
       </div>
     </div>
@@ -225,16 +220,9 @@
 <!-- ===== LOGO WALL ===== -->
 <section class="logos">
   <div class="logos-label">Trusted by</div>
-  <div class="marquee">
+  <div class="logo-row">
     <img class="logo-img" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
     <img class="logo-img" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
-    <div class="logo-chip">Brand 3</div>
-    <div class="logo-chip">Brand 4</div>
-    <!-- duplicate set for seamless loop -->
-    <img class="logo-img" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
-    <img class="logo-img" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
-    <div class="logo-chip">Brand 3</div>
-    <div class="logo-chip">Brand 4</div>
   </div>
 </section>
 
@@ -242,16 +230,14 @@
 <section class="work" id="work">
   <div class="eyebrow">Portfolio</div>
   <h2>Recent brand work</h2>
-  <p class="sub">Swap each tile for a &lt;video&gt; and set the brand caption.</p>
+  <p class="sub">Brand partnerships</p>
   <div class="work-grid">
     <div class="tile">
-      <video src="trainpal.mp4" muted loop autoplay playsinline></video>
-      <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+      <video src="trainpal.mp4" controls playsinline preload="metadata"></video>
       <div class="cap">TrainPal</div>
     </div>
     <div class="tile">
-      <video src="collider.mp4" muted loop autoplay playsinline></video>
-      <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+      <video src="collider.mp4" controls playsinline preload="metadata"></video>
       <div class="cap">Collider</div>
     </div>
   </div>
@@ -261,56 +247,76 @@
 <section class="examples" id="examples">
   <div class="eyebrow">Portfolio</div>
   <h2>Video examples</h2>
-  <p class="sub">Duplicate a phone block to add more. Video goes in .screen, caption below.</p>
+  <p class="sub">More of me</p>
   <div class="phone-grid">
 
     <figure class="phone">
-      <div class="device">
-        <span class="notch"></span>
+      <div class="device"><span class="notch"></span>
         <div class="screen">
-          <video src="league-win.mp4" muted loop autoplay playsinline></video>
-          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <video src="league-win.mp4" controls playsinline preload="metadata"></video>
           <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>100k</span>
-          <span class="scrubber"></span>
         </div>
       </div>
-      <figcaption>League win<span class="cap-sub">edit this caption</span></figcaption>
+      <figcaption>Football Emotions</figcaption>
     </figure>
 
     <figure class="phone">
       <div class="device"><span class="notch"></span>
         <div class="screen">
-          <video src="wimbledon.mp4" muted loop autoplay playsinline></video>
-          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <video src="wimbledon.mp4" controls playsinline preload="metadata"></video>
           <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>7k</span>
-          <span class="scrubber"></span>
         </div>
       </div>
-      <figcaption>Wimbledon<span class="cap-sub">edit this caption</span></figcaption>
+      <figcaption>Wimbledon</figcaption>
     </figure>
 
     <figure class="phone">
       <div class="device"><span class="notch"></span>
         <div class="screen">
-          <video src="england.mp4" muted loop autoplay playsinline></video>
-          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <video src="england.mp4" controls playsinline preload="metadata"></video>
           <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>7k</span>
-          <span class="scrubber"></span>
         </div>
       </div>
-      <figcaption>England<span class="cap-sub">edit this caption</span></figcaption>
+      <figcaption>England</figcaption>
     </figure>
 
     <figure class="phone">
       <div class="device"><span class="notch"></span>
         <div class="screen">
-          <video src="training.mp4" muted loop autoplay playsinline></video>
-          <button class="sound" aria-label="Toggle sound" onclick="toggleSound(this)"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+          <video src="training.mp4" controls playsinline preload="metadata"></video>
           <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>4k</span>
-          <span class="scrubber"></span>
         </div>
       </div>
-      <figcaption>Training<span class="cap-sub">edit this caption</span></figcaption>
+      <figcaption>Training</figcaption>
+    </figure>
+
+    <!-- ===== 4 NEW SLOTS (awaiting videos) ===== -->
+    <figure class="phone placeholder">
+      <div class="device"><span class="notch"></span>
+        <div class="screen ph-empty">Coming soon</div>
+      </div>
+      <figcaption>Coming soon</figcaption>
+    </figure>
+
+    <figure class="phone placeholder">
+      <div class="device"><span class="notch"></span>
+        <div class="screen ph-empty">Coming soon</div>
+      </div>
+      <figcaption>Coming soon</figcaption>
+    </figure>
+
+    <figure class="phone placeholder">
+      <div class="device"><span class="notch"></span>
+        <div class="screen ph-empty">Coming soon</div>
+      </div>
+      <figcaption>Coming soon</figcaption>
+    </figure>
+
+    <figure class="phone placeholder">
+      <div class="device"><span class="notch"></span>
+        <div class="screen ph-empty">Coming soon</div>
+      </div>
+      <figcaption>Coming soon</figcaption>
     </figure>
 
   </div>
@@ -361,15 +367,27 @@
 </footer>
 
 <script>
-function toggleSound(btn){
-  var wrap=btn.closest('.tile,.phone');
-  var v=wrap&&wrap.querySelector('video');
-  if(!v) return;
-  var willUnmute=v.muted;
-  document.querySelectorAll('video').forEach(function(x){x.muted=true;});
-  document.querySelectorAll('.sound').forEach(function(b){b.classList.remove('is-on');});
-  if(willUnmute){ v.muted=false; btn.classList.add('is-on'); v.play().catch(function(){}); }
-}
+/* Font previewer — loads a Google font on demand and swaps --font live */
+(function(){
+  var FONTS=["Poppins","Inter","Manrope","Sora","Space Grotesk","DM Sans",
+    "Plus Jakarta Sans","Outfit","Figtree","Onest","Epilogue","Urbanist","Lexend",
+    "Work Sans","Rubik","Bricolage Grotesque","Instrument Sans","Hanken Grotesk",
+    "Albert Sans","Archivo","Familjen Grotesk","Schibsted Grotesk","Libre Franklin",
+    "Red Hat Display","Be Vietnam Pro","Chivo","Fraunces","Playfair Display",
+    "Unbounded","Syne"];
+  var sel=document.getElementById('fontSel');
+  FONTS.forEach(function(f){var o=document.createElement('option');o.value=f;o.textContent=f;sel.appendChild(o);});
+  sel.value="Poppins";
+  var loaded={"Poppins":1};
+  function load(f){ if(loaded[f])return; loaded[f]=1;
+    var l=document.createElement('link'); l.rel='stylesheet';
+    l.href='https://fonts.googleapis.com/css2?family='+f.replace(/ /g,'+')+':wght@400;500;600;700&display=swap';
+    document.head.appendChild(l); }
+  sel.addEventListener('change',function(){
+    var f=sel.value; load(f);
+    document.documentElement.style.setProperty('--font',"'"+f+"',-apple-system,BlinkMacSystemFont,sans-serif");
+  });
+})();
 </script>
 </body>
 </html>
