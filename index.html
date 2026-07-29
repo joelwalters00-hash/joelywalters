@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#F5F0E8;
@@ -19,7 +19,7 @@
     --grey:#8A827A;
     --line:rgba(33,30,27,.12);
     --maxw:1100px;
-    --font:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font:"Outfit",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -31,13 +31,6 @@
   img,video{display:block;max-width:100%}
   h1,h2,h3{letter-spacing:-.02em;line-height:1.06;color:var(--ink)}
 
-  /* ---- font preview bar (TEMPORARY — remove once you pick) ---- */
-  .fontbar{position:fixed;top:12px;right:12px;z-index:200;background:var(--ink);
-    color:var(--cream);padding:8px 12px;border-radius:10px;display:flex;align-items:center;
-    gap:10px;font-size:.8rem;box-shadow:0 8px 24px rgba(0,0,0,.28)}
-  .fontbar select{font:inherit;padding:5px 8px;border-radius:6px;border:none;cursor:pointer}
-  .fontbar .hint{opacity:.55;font-size:.68rem}
-  @media(max-width:640px){.fontbar .hint{display:none}.fontbar{top:8px;right:8px}}
 
   nav{position:sticky;top:0;z-index:50;background:rgba(245,240,232,.85);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -108,6 +101,8 @@
     40%,60%{transform:translateX(4px) rotate(2deg)}
   }
   @media (prefers-reduced-motion:reduce){.logo-img:hover{animation:none}}
+  .logo-collider{filter:brightness(0) saturate(100%)}                 /* -> black */
+  .logo-trainpal{filter:brightness(0) saturate(100%) invert(38%) sepia(93%) saturate(1500%) hue-rotate(202deg) brightness(96%) contrast(101%)} /* -> brand blue (approx) */
 
   /* ---- recent brand work (2) ---- */
   .work h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;margin-bottom:8px}
@@ -167,13 +162,6 @@
 </head>
 <body id="top">
 
-<!-- TEMPORARY font previewer -->
-<div class="fontbar">
-  <label for="fontSel">Font</label>
-  <select id="fontSel"></select>
-  <span class="hint">preview only — tell me your pick</span>
-</div>
-
 <nav>
   <div class="nav-inner">
     <div class="brand">Joel Walters</div>
@@ -221,15 +209,15 @@
 <section class="logos">
   <div class="logos-label">Trusted by</div>
   <div class="logo-row">
-    <img class="logo-img" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
-    <img class="logo-img" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
+    <img class="logo-img logo-collider" src="https://www.drinkcollider.com/cdn/shop/files/logo-color.svg?v=1705173562" alt="Collider">
+    <img class="logo-img logo-trainpal" src="https://ak-d.tripcdn.com/images/0AS6612000a22oupcCC3E.png" alt="TrainPal">
   </div>
 </section>
 
 <!-- ===== RECENT BRAND WORK (2) ===== -->
 <section class="work" id="work">
   <div class="eyebrow">Portfolio</div>
-  <h2>Recent brand work</h2>
+  <h2>Recent Brand Work</h2>
   <p class="sub">Brand partnerships</p>
   <div class="work-grid">
     <div class="tile">
@@ -246,7 +234,7 @@
 <!-- ===== VIDEO EXAMPLES ===== -->
 <section class="examples" id="examples">
   <div class="eyebrow">Portfolio</div>
-  <h2>Video examples</h2>
+  <h2>Video Examples</h2>
   <p class="sub">More of me</p>
   <div class="phone-grid">
 
@@ -290,35 +278,45 @@
       <figcaption>Training</figcaption>
     </figure>
 
-    <!-- ===== 4 NEW SLOTS (awaiting videos) ===== -->
-    <figure class="phone placeholder">
+    <figure class="phone">
       <div class="device"><span class="notch"></span>
-        <div class="screen ph-empty">Coming soon</div>
+        <div class="screen">
+          <video src="running.mp4" controls playsinline preload="metadata"></video>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>4k</span>
+        </div>
       </div>
-      <figcaption>Coming soon</figcaption>
+      <figcaption>Do I really like running?</figcaption>
     </figure>
 
-    <figure class="phone placeholder">
+    <figure class="phone">
       <div class="device"><span class="notch"></span>
-        <div class="screen ph-empty">Coming soon</div>
+        <div class="screen">
+          <video src="ditl.mp4" controls playsinline preload="metadata"></video>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>7k</span>
+        </div>
       </div>
-      <figcaption>Coming soon</figcaption>
+      <figcaption>Day In The Life</figcaption>
     </figure>
 
-    <figure class="phone placeholder">
+    <figure class="phone">
       <div class="device"><span class="notch"></span>
-        <div class="screen ph-empty">Coming soon</div>
+        <div class="screen">
+          <video src="adhd.mp4" controls playsinline preload="metadata"></video>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>5k</span>
+        </div>
       </div>
-      <figcaption>Coming soon</figcaption>
+      <figcaption>Working with ADHD</figcaption>
     </figure>
 
-    <figure class="phone placeholder">
+    <figure class="phone">
       <div class="device"><span class="notch"></span>
-        <div class="screen ph-empty">Coming soon</div>
+        <div class="screen">
+          <video src="mcing.mp4" controls playsinline preload="metadata"></video>
+          <span class="views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>20k</span>
+        </div>
       </div>
-      <figcaption>Coming soon</figcaption>
+      <figcaption>MC'ing</figcaption>
     </figure>
-
   </div>
 </section>
 
@@ -367,27 +365,11 @@
 </footer>
 
 <script>
-/* Font previewer — loads a Google font on demand and swaps --font live */
-(function(){
-  var FONTS=["Poppins","Inter","Manrope","Sora","Space Grotesk","DM Sans",
-    "Plus Jakarta Sans","Outfit","Figtree","Onest","Epilogue","Urbanist","Lexend",
-    "Work Sans","Rubik","Bricolage Grotesque","Instrument Sans","Hanken Grotesk",
-    "Albert Sans","Archivo","Familjen Grotesk","Schibsted Grotesk","Libre Franklin",
-    "Red Hat Display","Be Vietnam Pro","Chivo","Fraunces","Playfair Display",
-    "Unbounded","Syne"];
-  var sel=document.getElementById('fontSel');
-  FONTS.forEach(function(f){var o=document.createElement('option');o.value=f;o.textContent=f;sel.appendChild(o);});
-  sel.value="Poppins";
-  var loaded={"Poppins":1};
-  function load(f){ if(loaded[f])return; loaded[f]=1;
-    var l=document.createElement('link'); l.rel='stylesheet';
-    l.href='https://fonts.googleapis.com/css2?family='+f.replace(/ /g,'+')+':wght@400;500;600;700&display=swap';
-    document.head.appendChild(l); }
-  sel.addEventListener('change',function(){
-    var f=sel.value; load(f);
-    document.documentElement.style.setProperty('--font',"'"+f+"',-apple-system,BlinkMacSystemFont,sans-serif");
-  });
-})();
+/* hover-to-play (muted preview); manual controls still available for sound */
+document.querySelectorAll('.tile video, .phone video').forEach(function(v){
+  v.addEventListener('mouseenter',function(){ if(v.paused){ v.muted=true; v.play().catch(function(){}); } });
+  v.addEventListener('mouseleave',function(){ if(v.muted){ v.pause(); } });
+});
 </script>
 </body>
 </html>
