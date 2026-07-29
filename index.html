@@ -323,7 +323,7 @@
 <!-- ===== REVIEWS ===== -->
 <section class="reviews" id="reviews">
   <div class="eyebrow">Social proof</div>
-  <h2>Client reviews</h2>
+  <h2>Client Reviews</h2>
   <div class="review-grid">
     <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>This cut is genuinely outstanding &mdash; polished, engaging, and incredibly watchable. Our whole team loves it. The pacing, visuals, and VO are spot-on, and your creative instincts really shine through. It's clear you put a lot of care into this, and the result is superb. We're truly excited to publish it.</p></div>
     <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>The team really loves your work: fresh concept, tight pacing, engaging storytelling, and a natural on-camera presence. It's genuinely one of our favourites this round.</p></div>
@@ -365,10 +365,14 @@
 </footer>
 
 <script>
-/* hover-to-play (muted preview); manual controls still available for sound */
+/* hover-to-play WITH sound. Browsers block unmuted autoplay until the user has
+   interacted with the page once, so we try sound first and fall back to muted. */
 document.querySelectorAll('.tile video, .phone video').forEach(function(v){
-  v.addEventListener('mouseenter',function(){ if(v.paused){ v.muted=true; v.play().catch(function(){}); } });
-  v.addEventListener('mouseleave',function(){ if(v.muted){ v.pause(); } });
+  v.addEventListener('mouseenter',function(){
+    v.muted=false; v.volume=1;
+    v.play().catch(function(){ v.muted=true; v.play().catch(function(){}); });
+  });
+  v.addEventListener('mouseleave',function(){ v.pause(); v.currentTime=0; });
 });
 </script>
 </body>
